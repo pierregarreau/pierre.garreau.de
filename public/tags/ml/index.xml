@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ml on Blog bazar of Pierre Garreau</title>
+    <title>ML on Blog bazar of Pierre Garreau</title>
     <link>https://pierregarreau.github.io/tags/ml/</link>
-    <description>Recent content in Ml on Blog bazar of Pierre Garreau</description>
+    <description>Recent content in ML on Blog bazar of Pierre Garreau</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 13 Apr 2018 13:10:09 +0100</lastBuildDate>

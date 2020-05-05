@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Pierre Garreau">
+<meta name="description" content="(Above, credits from this github using d3 to render Voronoi tesselations in SVG).
+Lately we&rsquo;ve seen a surge of interest towards remote. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in the basecamp books, and much can be found on the web &ndash; see the survival guide of Alexey, to mention only one &ndash; I find it interesting to look at remote in practice, inside the daily of an early stage company.">
+
+<meta property="og:title" content="On culture, and working remote at Searoutes." />
+<meta property="og:description" content="(Above, credits from this github using d3 to render Voronoi tesselations in SVG).
+Lately we&rsquo;ve seen a surge of interest towards remote. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in the basecamp books, and much can be found on the web &ndash; see the survival guide of Alexey, to mention only one &ndash; I find it interesting to look at remote in practice, inside the daily of an early stage company." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pierregarreau.github.io/blog/on-remote/" />
+<meta property="article:published_time" content="2020-04-22T19:40:58+02:00" />
+<meta property="article:modified_time" content="2020-04-22T19:40:58+02:00" />
+
+
+<title>
+
+
+     On culture, and working remote at Searoutes. 
+
+</title>
+<link rel="canonical" href="https://pierregarreau.github.io/blog/on-remote/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2020-05-05%2015%3a43%3a43.209454%20%2b0200%20CEST%20m%3d%2b0.051638878">
+    <link rel="stylesheet" href="/css/pygments.css?t=2020-05-05%2015%3a43%3a43.209454%20%2b0200%20CEST%20m%3d%2b0.051638878">
+    <link rel="stylesheet" href="/css/main.css?t=2020-05-05%2015%3a43%3a43.209454%20%2b0200%20CEST%20m%3d%2b0.051638878">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2020-05-05%2015%3a43%3a43.209454%20%2b0200%20CEST%20m%3d%2b0.051638878">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/leaf.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.png" srcset="https://pierregarreau.github.io/img/profile.png 1x"></a>
+            
+            <a href="/"><div class="name">Pierre Garreau</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://pierregarreau.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://pierregarreau.github.io/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/pierregarreau" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/pierre_garreau" target="_blank" rel="noopener"><img class="icon" src="/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/pgarreau" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            <a href="//instagram.com/theo_calimero" target="_blank" rel="noopener"><img class="icon" src="/img/instagram.svg" alt="instagram" /></a>
+        
+
+        
+
+        
+            <a href="mailto:pierre@garreau.de"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://pierregarreau.github.io/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    On culture, and working remote at Searoutes.
+
+</div>
+
+                    <div class="initials"><a href="https://pierregarreau.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Wed Apr 22 2020 19:40:58 CEST'>Apr 22, 2020</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>8 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<em>(Above, credits from <a href="https://bl.ocks.org/git-ashish/b04d673fbfc665f2c98f382e2c79a9ad">this github</a> using d3 to render Voronoi tesselations in SVG).</em></p>
+<p>Lately we&rsquo;ve seen a surge of interest towards <em>remote</em>. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in <a href="https://basecamp.com/books">the basecamp books</a>, and much can be found on the web &ndash; see <a href="https://leanpub.com/working-from-fucking-home">the survival guide of Alexey</a>, to mention only one &ndash; I find it interesting to look at remote in practice, inside the daily of an early stage company.</p>
+<p>We have been practicing remote at <em>Searoutes</em> for 18 months now. Like many, we started inwards, looking at our values, and adjusted our method in iterations. We came to use a simple process built around a <em>heartbeat</em>, and a minimal toolkit we call <em>the SHAG</em> !</p>
+<p>Whether you are just starting with remote, or already doing it, you will find that remote values can really transform your organization and the way you work. At our stage, no need for heavy collaboration tools, we are well aware that what works for us now may not work when we scale up. However, I can only encourage you to try to iterate with your teams, copy some of the ideas here, and adjust your way of doing remote.</p>
+<h2 id="behind-our-method-and-our-tooling">Behind our method and our tooling.</h2>
+<p><strong>🏃‍♂️ Remote first.</strong> <a href="https:/www.searoutes.com">Searoutes</a> is a one year old company, with a team of 6, split between 2 offices in Germany and France. We support 36 clients with 4 API products distributing routes for vessels or containers, weather data, Co2 emissions and geocoding information to Maritime and Logistic companies.</p>
+<p>From its infancy, the company was set up remote. By <em>remote</em> I mean <em>not colocated</em>. While we have 2 physical offices, team members choose to work from the coffee shop, their house, a co-working space or at a client&rsquo;s. We get together on a <em>heartbeat</em> (see next section) to groom, sprint, brainstorm or team build, but most of the work happens online.</p>
+<p>This pushed forward strong <em>trust &amp; transparency values</em> from day one, inspired originally from <a href="https://www.principles.com/">Ray Dalio&rsquo;s <em>The Principles</em></a>. While we may not be <em>radically</em> transparent, everything we do at Searoutes is accessible to others. For remote to work, every team member had to be able to see how everyone else contributes to the company goals. Transparency was key.</p>
+<p>Once trust was established, the impact of what we had just done became clear when I noticed we all had a different routing in place. In fact, we all know what works best for ourselves! We all know how to best get into the flow: music, a quiet space, the coffee shop, the library, doing sports before or a healthy skake.</p>
+<p><strong>💪 Empowered first.</strong> You cannot build a remote culture if you are imposing that your team be online from 9 to 5. This would be the digital equivalent of <em>managing chairs</em>, i.e. checking on everyone&rsquo;s clock. For our remote culture to strive and grow, we had to borrow from the <em>distributed</em> principles. By <em>distributed</em> I mean <em>not always online together</em>. Most of us are used to working that way already, with our accountant, lawyer, doctor. It means that we work together but asynchronously.</p>
+<p>Working asynchronously meant taking extra care for clarity and dependency removal. We made sure everyone could deliver without waiting on others. Concretely, that meant organizing around <em>outcomes</em>. For us to be working asynchronously, and without having every one&rsquo;s inputs &ndash; or the boss&rsquo;! &ndash; we focused on results and problems rather than on solutions. I strive to give context rather than direction. In that sense the OKR methodoly was perfectly suited for us.</p>
+<p><strong>🌐 Product first.</strong> Task lists may work in the physical world, where managers contantly remind you of items and prorities. Reshuffle it. And reshuffle it again. Every now and then, you may be pulled into a break out room with a slice of pizza to brainstorm and move the product forward, hoping everyone remembers the items described that day. If it sounds familiar, it&rsquo;s because too many teams still follow that task list model. It just does not work. Tasks are often unclear, they lack scope, purpose. Often, they have dependencies and require several iterations of explaining.</p>
+<p>By putting the product first &ndash; the company <em>is</em> a product, to use the words of <a href="https://svpg.com/inspired-how-to-create-products-customers-love/">Marty Cagan</a> &ndash; we achieve understanding, across the team, of what we are trying to build, and let everyone figure out the best to do it. Whether an hypothesis we are trying to validate, a new campaign we&rsquo;d like to launch or a feature we wish to release, we focus on the outcome and the value for the customer. This feeds into empowerment, and allows the team to be remote first.</p>
+<h2 id="our-process-is-a-simple-heartbeat">Our process is a simple heartbeat.</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>We call it the <em>OKR and the Pie</em>. It&rsquo;s our answer to remote, empowered and product first. Put simply, it&rsquo;s a heartbeat which comes in two flavors, somewhat regular. The first, the OKRs, are set quartely, and allow us to pause and reflect on the bigger picture. The second, the Pie, works in sprint bundles, often close to 6 weeks, and provides focus. The two together allow us to switch context, and stay on the right pace.</p>
+<p><strong>🎯 The OKRs.</strong> Objectives &amp; Key Results. In a nutshell: what are we trying to accomplish, and how do we measure it? We meet every quarter with the full team, usually physically in the same office, and discuss our goals for the upcoming months. It is a good time to communicate and refine the vision, and gather ideas on how everyone can best contribute. Also a good opportunity to reflect on our process, and make sure we are measuring what counts.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Whether or not the framework is completly right, it&rsquo;s the discussion coming out of setting the objectives that matter. Because <em>the team sets its own goals</em>, there is buy-in of all participants. We all feel empowered, and responsible for achieving the goals we set out to establish.</p>
+<p><strong>🍕 The Pie.</strong> The Pie is a bundle of sprints during which the team focuses. At Searoutes, this just happened over iterations: we realized that we often divided our work in iterations, brics or versions which last about 6 weeks. It seems to the be the right amount of time to build a prototype, a feature, clear uncertainty around a new tech, or validate assumptions around what clients may like.</p>
+<p>During my academic times, I was very fortunate to work with a thesis advisor who would always ask <em>&ldquo;what is the simplest version of what you just told me? Can you prove that simplest version is true? Or can you find a counter argument to invalidate it?&quot;</em>. In some sense, these academic principles are very close to the startup build-measure-learn philosophy.</p>
+<p>Since then I have pushed toward building in iterations, always the simplest version first. At each step of the way making sure we provide value. In the OKR framework, as we work towards objectives spanning several months, it makes sense for us to split quarters in pies, and iterating.</p>
+<p><strong>🏄‍♂️ The Sprint.</strong> This is our week&rsquo;s worth of work. It is not about going fast, but about scoping. At the beginning of every sprint, we put our OKRs on the (remote) board, and align against it. Sales, Marketing, Tech and Product all go through the same exercise: what do we achieve this week &amp; how do we know we achieved it? During the sprint, we usually meet over breakfast to discuss topics not related to work, but likely to inspire or suggest new ideas. We close our sprints in a weekly meeting we call <em>friday for winners</em>, see <a href="http://eleganthack.com/radical-focus-is-here/">the book of C. Wodtke</a>, where we share new features, clients, leads, and briefly touch on what&rsquo;s next.</p>
+<!-- raw HTML omitted -->
+<p>In summary, the heartbeat is simple:</p>
+<ul>
+<li>A few touch points everyweek: OKR planning, a breafast, Friday for winners.</li>
+<li>A few touch points every 6 weeks or so: the Pie.</li>
+<li>A few touch points every quarter or so: the OKRs.</li>
+</ul>
+<h2 id="the-shag-toolkit">The <em>SHAG</em> toolkit.</h2>
+<p>SHAG stands for <em>Slack - Hubspot - Airtable - Github</em>. It is minimal, as you would expect from an early stage company of 6 people. It is designed to function remote &amp; distributed, across all functions. Simply, it fits our heartbeat: the OKR / Pie / Sprint process.</p>
+<p><strong>🙊 Slack.</strong> Emails are a bit old fashion, slack allows us to jump on a call right away, share giphies, files, and integrates with everything else: Hubspot, Airtable, Github. Realtime. You just need to know when to turn it off, in the same fashion you would turn off your email client, cell phone, etc.</p>
+<p><strong>🙌 Hubspot.</strong> <a href="https://www.hubspot.com/">Hubspot</a> concentrates all the activities that are customer facing. We especially enjoy their philosophie on inbound marketing and modern sales. We organize our leads acquisition process &ndash; emails campains, forms, support &ndash; and sales development on the platform.</p>
+<p><strong>📙 Airtable.</strong> Generally speaking, we use <a href="https://airtable.com/">Airtable</a> for everything organisational. From onboarding new team members, to gathering user feedback, to setting objectives for all parts of the business. It is as simple as a spreadsheet, but more colorful. As a bonus, it is easily exposable via API, and we actually have used it for simple projects as a (light) database.</p>
+<p><strong>💎 Github.</strong> Do we need to say more?</p>
+<h2 id="closing">Closing</h2>
+<p>At Searoutes, we put transparency, independence and product first. After a few iterations, we organised our heartbeat around OKRs, Pies and Sprints. We meet every week and every quarter to align context, not tasks. This pushed us to use the <em>SHAG</em> toolkit. No overhead, everything happens online.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+                <br>
+		<p><a href="/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-35367847-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

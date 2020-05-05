@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog bazar of another frenchy on Blog bazar of Pierre Garreau</title>
@@ -10,6 +10,16 @@
     
 	<atom:link href="https://pierregarreau.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>On culture, and working remote at Searoutes.</title>
+      <link>https://pierregarreau.github.io/blog/on-remote/</link>
+      <pubDate>Wed, 22 Apr 2020 19:40:58 +0200</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/on-remote/</guid>
+      <description>(Above, credits from this github using d3 to render Voronoi tesselations in SVG).
+Lately we&amp;rsquo;ve seen a surge of interest towards remote. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in the basecamp books, and much can be found on the web &amp;ndash; see the survival guide of Alexey, to mention only one &amp;ndash; I find it interesting to look at remote in practice, inside the daily of an early stage company.</description>
+    </item>
     
     <item>
       <title>A collaboration model for startups and the Maritime Industry.</title>
