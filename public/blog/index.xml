@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Blog bazar of Pierre Garreau</title>
+    <link>https://pierregarreau.github.io/blog/</link>
+    <description>Recent content in Blog on Blog bazar of Pierre Garreau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jul 2016 13:42:16 +0200</lastBuildDate>
+    
+	<atom:link href="https://pierregarreau.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A collaboration model for startups and the Maritime Industry.</title>
+      <link>https://pierregarreau.github.io/blog/startups-and-corporates/</link>
+      <pubDate>Wed, 25 Apr 2018 08:46:38 +0200</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/startups-and-corporates/</guid>
+      <description>A group of industry representatives from the Maritime Industry met last week to discuss models of collaboration with startups. The event was called Smart Transformation Hamburg. I heard at that event too many instances of the same buzz words: innovation, digitization, agile, blockchain, machine learning from both side of the wall, corporates and startups alike. In the end, both want a well designed product that customers love, build it rapidly, and for a moderate development cost.</description>
+    </item>
+    
+    <item>
+      <title>Why should you build your own Neural Networks library?</title>
+      <link>https://pierregarreau.github.io/blog/nn-datastructure/</link>
+      <pubDate>Fri, 13 Apr 2018 13:10:09 +0100</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/nn-datastructure/</guid>
+      <description>I have had this conversation with new hires about the benefits of following an online class on Machine Learning, such as the one offered by Coursera. It is rather astonishing to see how fast one can take the concepts from these classes - from Coursera, Udacity, Stanford or MIT - and apply them to real world problems. The recent addition of the course on Applied AI to the Coursera catalogue is another example of this ever growing supply of good online AI courses.</description>
+    </item>
+    
+    <item>
+      <title>Reflections on the role of Certainly Trusted Orangutan (CTO)</title>
+      <link>https://pierregarreau.github.io/blog/chief-orangoutan/</link>
+      <pubDate>Wed, 13 Dec 2017 09:44:05 +0100</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/chief-orangoutan/</guid>
+      <description>Following the closing of a successful series A, the arrival of new management causes a departure rate of 65%, from both tech and product. Sounds familiar ? One of many stories the startup world offers! Now, high turnover rates in early stage companies are common. However, when too many fingers point to the newly appointed Chief Technology Officer, or CTO, it begs the question - why ? After all, what makes a good CTO to start with ?</description>
+    </item>
+    
+    <item>
+      <title>Why FFT matters to undergraduates?</title>
+      <link>https://pierregarreau.github.io/blog/processing/</link>
+      <pubDate>Tue, 14 Nov 2017 20:42:14 +0100</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/processing/</guid>
+      <description>Above: Live graphics created for a music set at Pimp the Chateau, France, December 2009. Click anywhere on the page to pause / play. Music Maison Kitsune.
+Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special. We decided it needed an identity.</description>
+    </item>
+    
+  </channel>
+</rss>

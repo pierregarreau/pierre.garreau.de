@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Start Ups on Blog bazar of Pierre Garreau</title>
+    <link>https://pierregarreau.github.io/tags/start-ups/</link>
+    <description>Recent content in Start Ups on Blog bazar of Pierre Garreau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Apr 2018 08:46:38 +0200</lastBuildDate>
+    
+	<atom:link href="https://pierregarreau.github.io/tags/start-ups/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A collaboration model for startups and the Maritime Industry.</title>
+      <link>https://pierregarreau.github.io/blog/startups-and-corporates/</link>
+      <pubDate>Wed, 25 Apr 2018 08:46:38 +0200</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/startups-and-corporates/</guid>
+      <description>A group of industry representatives from the Maritime Industry met last week to discuss models of collaboration with startups. The event was called Smart Transformation Hamburg. I heard at that event too many instances of the same buzz words: innovation, digitization, agile, blockchain, machine learning from both side of the wall, corporates and startups alike. In the end, both want a well designed product that customers love, build it rapidly, and for a moderate development cost.</description>
+    </item>
+    
+    <item>
+      <title>Reflections on the role of Certainly Trusted Orangutan (CTO)</title>
+      <link>https://pierregarreau.github.io/blog/chief-orangoutan/</link>
+      <pubDate>Wed, 13 Dec 2017 09:44:05 +0100</pubDate>
+      
+      <guid>https://pierregarreau.github.io/blog/chief-orangoutan/</guid>
+      <description>Following the closing of a successful series A, the arrival of new management causes a departure rate of 65%, from both tech and product. Sounds familiar ? One of many stories the startup world offers! Now, high turnover rates in early stage companies are common. However, when too many fingers point to the newly appointed Chief Technology Officer, or CTO, it begs the question - why ? After all, what makes a good CTO to start with ?</description>
+    </item>
+    
+  </channel>
+</rss>

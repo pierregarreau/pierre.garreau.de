@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+body, section, header {
+    font-family: 'Quicksand', sans-serif;
+}
+
+section.main .content .markdown img {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+}

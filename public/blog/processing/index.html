@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Pierre Garreau">
+<meta name="description" content="Build an equalizer with the Fourier transform and P5.js">
+
+<meta property="og:title" content="Why FFT matters to undergraduates?" />
+<meta property="og:description" content="Build an equalizer with the Fourier transform and P5.js" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pierregarreau.github.io/blog/processing/" />
+
+
+
+<meta property="article:published_time" content="2017-11-14T20:42:14&#43;01:00"/>
+
+<meta property="article:modified_time" content="2017-11-14T20:42:14&#43;01:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Why FFT matters to undergraduates? 
+
+</title>
+<link rel="canonical" href="https://pierregarreau.github.io/blog/processing/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2018-04-25%2020%3a14%3a42.705057%20%2b0200%20CEST%20m%3d%2b0.276164767">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-04-25%2020%3a14%3a42.705057%20%2b0200%20CEST%20m%3d%2b0.276164767">
+    <link rel="stylesheet" href="/css/main.css?t=2018-04-25%2020%3a14%3a42.705057%20%2b0200%20CEST%20m%3d%2b0.276164767">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2018-04-25%2020%3a14%3a42.705057%20%2b0200%20CEST%20m%3d%2b0.276164767">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/leaf.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.png" srcset="https://pierregarreau.github.io/img/profile.png 1x"></a>
+            
+            <a href="/"><div class="name">Pierre Garreau</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://pierregarreau.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://pierregarreau.github.io/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/pierregarreau" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/pierre_garreau" target="_blank" rel="noopener"><img class="icon" src="/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/pgarreau" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            <a href="//instagram.com/theo_calimero" target="_blank" rel="noopener"><img class="icon" src="/img/instagram.svg" alt="instagram" /></a>
+        
+
+        
+
+        
+            <a href="mailto:pierre@garreau.de"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://pierregarreau.github.io/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Why FFT matters to undergraduates?
+
+</div>
+
+                    <div class="initials"><a href="https://pierregarreau.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Tue Nov 14 2017 20:42:14 CET'>Nov 14, 2017</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>7 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<div id="sketch-holder">
+  <!-- p5 sketch goes here -->
+</div>
+
+<p><strong>Above</strong>: Live graphics created for a music set at <em>Pimp the Chateau</em>, France, December 2009. Click anywhere on the page to <em>pause / play</em>. Music <a href="https://shop.kitsune.fr/music/music/compilation.html?___store=kitsune_fr_fr">Maison Kitsune</a>.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special. We decided it needed <em>an identity</em>. This is how the <em>Pimp the Chateau</em> series was born, and the graphics above were created.</p>
+
+<p><em>These</em> are a typical application of what undergraduate applied mathematics can do, I thought it was worth sharing, for others to create their own, and for other applications than live audio stream processing. Perhaps can it stimulate interest in <a href="https://processing.org/">Processing</a> - an amazing project and library for visual arts - and its recent port to javascript, named <a href="https://p5js.org/">P5.js</a>. If this blog post resonates with you in anyway, I warmly recommend the following documentary on the visual arts revolution that <em>Processing</em> started: <a href="https://vimeo.com/60735314">HELLO WORLD! Processing</a>.</p>
+
+<p>So here we are, this blog post is about how to build a custom equalizer with P5.js. What we will do next is:</p>
+
+<ul>
+<li>recall what the Fourier Transform is;</li>
+<li>discuss how to implement a custom equalizer with P5.js;</li>
+<li>in the process of doing so, gather up a couple of <em>interview questions</em> for quants or data engineers to be, and;</li>
+<li>write some code;</li>
+</ul>
+
+<p>You can also - just - jump to <a href="#setting-up-a-p5.js-canvas">code</a>.</p>
+
+<h2 id="some-undergraduate-mathematics">Some undergraduate mathematics</h2>
+
+<p>We first need to define what an equalizer is. And while the early XIX&rsquo;s century surely was not busy thinking about those things, we shall start with talking about Joseph Fourier. If you know what a Fast Fourier Transform is, or wish to skip our history bubble, scroll to the next section.</p>
+
+<p>Joseph Fourier is the father of a method used to decompose square integrable functions into an infinite series of exponential functions: the Fourier transform. It was originally published in 1822 when J. Fourier was studying <a href="https://www.worldcat.org/title/theorie-analytique-de-la-chaleur/oclc/2688081">heat transfers</a>. Because it makes it easier to study phenomena involving <a href="https://en.wikipedia.org/wiki/Wave">waves</a> - and with it signal processing, electro magnetism, mechanics, differential equations - the Fourier transform is undoubtedly one of the most important discoveries of the XIX&rsquo;s century.</p>
+
+<p>In essence, one transforms a function $f: t \to f(t)$ of time to a function $\hat{f}: \omega \to \hat{f}(\omega)$ of frequencies. The animation below - credit <a href="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif">wikipedia</a> - shows that mapping for a function defined as the sum of six sinusoids.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif" class='img-center'/></p>
+
+<p>Numerically, Fourier transforms are approximated with finite series, see for instance <a href="http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf">these lecture notes</a>. Each coefficient of the approximated series corresponds to the amplitude of a given frequency. <em>That</em> is our equalizer. Numerically, one needs an efficient way to compute this approximated series, and while javascript may not be the best candidate for doing so, the <a href="https://p5js.org/reference/#/libraries/p5.sound">sound</a> library of P5.js provides us with an implementation. To dig a bit deeper, here are two more references:</p>
+
+<ul>
+<li><a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/www/notes/fourier/fourier.pdf">Lecture notes</a> about the Fourier and the Fast Fourier Transform;</li>
+<li>A discussion of efficient computations of discrete Fourier series known as the <a href="http://fftw.org/">Fastest Fourier Transform of the West</a> project.</li>
+</ul>
+
+<h2 id="what-is-an-equalizer">What <em>is</em> an equalizer ?</h2>
+
+<p>An equalizer can be defined as <em>a sequence of discrete Fourier transforms on an audio stream</em>. Rephrase: an equalizer is a list of amplitudes for specified frequencies - bass, treble - at different time steps. The following algorithm should therefore get us started:</p>
+
+<pre><code>- For each time step,
+- - sampledAudio = Sample(audio stream)
+- - amplitudes, frequencies = Fourier Transform [sampledAudio]
+- - display(amplitude, frequencies)
+</code></pre>
+
+<p>In the algorithm above, the <code>display</code> function is where you can get creative. The Fourier transform will give us a list of amplitudes. This can be mapped to a color or transparency scheme, for example. For the frequencies, we are looking for a spatial map, from a list to another data structure.</p>
+
+<p>Let&rsquo;s take the grid showed in the example at the top of this page. Frequencies are listed from the bottom left corner to the top right corner. We map indexed frequencies from $1, \ldots, N$ to a position $(i,j)$ on the grid which reflect this bottom-left-to-top-right logic.</p>
+
+<p>So, given sampled amplitude and frequencies, what would an API for this Grid look like ? We need some sort of initialization to create the grid, first based on number of rows and columns, then optimized to fit our canvas size. Then we need an <code>equalize</code> routine, which will display the frequencies on the grid. In javascript, this would look something like this:</p>
+
+<pre><code class="language-javascript">function Grid(num_rows, num_cols){
+  ...
+  this.initialize = function(canva_width, canva_height){
+    this.create_grid(canva_width, canva_height);
+    this.mapping = new Mapping();
+  };
+  this.equalize = function(frequencies){
+    ...
+    this.grid[i][j].display(frequencies[this.mapping[i][j]]);
+    ...
+  }
+}
+</code></pre>
+
+<p>There are many different mappings of array to matrix that one can build. And curiously enough, it seems that this <code>Grid</code> object naturally raises questions that beg to be asked in interviews, typically for quants or data engineering positions. Here are a few:</p>
+
+<ul>
+<li><em>Write your own function to map an $N$ dimensional array to an $n \times m$ matrix</em>.</li>
+<li><em>How does one efficiently traverse a matrix <a href="http://4.bp.blogspot.com/-AcneqVltY3g/Uiy0JMTXuiI/AAAAAAAAAfA/xN5k_GyRJYg/s1600/Spiral.jpg">in spiral</a></em>?</li>
+<li><em>Can you write a piece of code that maps an array 1, 2, &hellip;, N to a <a href="https://www.pantechsolutions.net/blog/wp-content/uploads/2014/01/zig-zag-ordering.jpg">zigzag matrix</a></em>?</li>
+<li><em>Imagine we want to build an $n\times m$ grid of squares on a canvas of size $W \times H$. We want all squares of the same edge size and all equally separated by the same spacing. Can you write a piece of code to do that ? Is there always a solution to this problem ?</em>.</li>
+</ul>
+
+<p>Ok, we have all the elements to start coding. Have a look at the <a href="https://p5js.org/reference/">reference page</a> for P5.js if you need more verbose.</p>
+
+<h2 id="a-name-setting-up-a-p5-js-canvas-a-equalize-with-p5-js"><a name="setting-up-a-p5.js-canvas"></a> Equalize with P5.js</h2>
+
+<p>For your canvas to load in your html page, make sure you have the P5.js libraries locally, and that these are correctly included. These are needed to manipulate the DOM and process the sound stream. Your P5.js code goes in a <code>sketch.js</code> file. Your html should look like this:</p>
+
+<pre><code class="language-html">&lt;div id=&quot;canvas-div-id&quot;&gt;
+  &lt;!-- your sketch goes here --&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/static/p5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/static/p5.dom.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/static/p5.sound.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/sketch.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Processing sketches are organized in three main parts: <code>preload</code>, <code>setup</code> and <code>draw</code>. The two first routines are used to set up your canvas. The function <code>draw</code> is the one called at every frame processing. You can set a particular <code>frameRate</code> to draw a specific number of frames per seconds. So, the skeleton of your <code>sketch.js</code> should look like this:</p>
+
+<pre><code class="language-javascript">function preload() {
+  ...
+}
+function setup(){
+    const canva_width = ...;
+    const canva_height = ...;
+    var canvas = createCanvas(canva_width, canva_height);
+    canvas.parent('canvas-div-id');
+    ...
+}
+function draw() {
+  ...
+}
+</code></pre>
+
+<p>The <code>canvas.parent('canvas-div-id')</code> is used to inject your canvas to a particular div-id in your html. Because we are manipulating audio, the <code>preload</code> function will need to fetch your music and background files. Note that the audio stream can also be replaced with a microphone input, so the stream is actually <em>LIVE</em>.</p>
+
+<pre><code class="language-javascript">function preload() {
+    soundFormats('ogg', 'mp3');
+    soundStream = loadSound('/assets/club3.mp3');
+    background = loadImage(&quot;/assets/FLY00.gif&quot;);
+}
+</code></pre>
+
+<p>The <code>setup</code> routine specifies the FFT input and creates the grid.</p>
+
+<pre><code class="language-javascript">function setup(){
+    ... // as above
+
+    fft = new p5.FFT();
+    fft.setInput(soundStream);
+
+    var cols = 12;
+    var rows = 8;
+    grid = new Grid(rows, cols);
+    grid.initialize(canvas_width, canvas_height);
+}
+</code></pre>
+
+<p>The <code>draw</code> function calls our <code>grid.equalize</code> on top of the background image. For completeness:</p>
+
+<pre><code class="language-javascript">function draw() {
+    image(background, 0, 0)
+    grid.equalize();
+}
+</code></pre>
+
+<p>That&rsquo;s it! Is only missing the implementation of the Grid object. I suggested an API above, feel free to write your own implementation, adapt, or copy <a href="/js/p5/sketch.js">this sketch</a>.</p>
+
+<h2 id="closing">Closing</h2>
+
+<p>Processing is an amazing framework for prototyping visual arts with code. The community around the project is vast, see for instance this online series of tutorials at <a href="http://hello.processing.org/">hello processing</a> - and the creativity used in the <a href="https://www.processing.org/exhibition/">applications</a> of the library is outstanding. We have seen in this post that 50 lines of code give you dynamic graphics generation based on an audio stream. Imagine what you can do with a 100 lines !!!</p>
+
+<script type="text/javascript" src="/js/p5/p5.min.js"></script>
+<script type="text/javascript" src="/js/p5/p5.dom.js"></script>
+<script type="text/javascript" src="/js/p5/p5.sound.min.js"></script>
+<script type="text/javascript" src="/js/p5/sketch.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+           extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+      // hack to overcome a shortcoming of Markdown. Discussion at
+      // https://github.com/mojombo/jekyll/issues/199
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+                <br>
+		<p><a href="/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-35367847-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+
