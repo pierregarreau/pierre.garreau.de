@@ -43,11 +43,11 @@
 
 
     
-    <link rel="stylesheet" href="/css/reset.css?t=2020-05-05%2015%3a54%3a26.568397%20%2b0200%20CEST%20m%3d%2b0.046635941">
-    <link rel="stylesheet" href="/css/pygments.css?t=2020-05-05%2015%3a54%3a26.568397%20%2b0200%20CEST%20m%3d%2b0.046635941">
-    <link rel="stylesheet" href="/css/main.css?t=2020-05-05%2015%3a54%3a26.568397%20%2b0200%20CEST%20m%3d%2b0.046635941">
+    <link rel="stylesheet" href="/css/reset.css?t=2020-05-06%2020%3a04%3a15.052007%20%2b0200%20CEST%20m%3d%2b0.136728108">
+    <link rel="stylesheet" href="/css/pygments.css?t=2020-05-06%2020%3a04%3a15.052007%20%2b0200%20CEST%20m%3d%2b0.136728108">
+    <link rel="stylesheet" href="/css/main.css?t=2020-05-06%2020%3a04%3a15.052007%20%2b0200%20CEST%20m%3d%2b0.136728108">
     
-        <link rel="stylesheet" href="/css/override.css?t=2020-05-05%2015%3a54%3a26.568397%20%2b0200%20CEST%20m%3d%2b0.046635941">
+        <link rel="stylesheet" href="/css/override.css?t=2020-05-06%2020%3a04%3a15.052007%20%2b0200%20CEST%20m%3d%2b0.136728108">
     
 
 
@@ -207,7 +207,7 @@
 <p>We first need to define what an equalizer is. And while the early XIX&rsquo;s century surely was not busy thinking about those things, we shall start with talking about Joseph Fourier. If you know what a Fast Fourier Transform is, or wish to skip our history bubble, scroll to the next section.</p>
 <p>Joseph Fourier is the father of a method used to decompose square integrable functions into an infinite series of exponential functions: the Fourier transform. It was originally published in 1822 when J. Fourier was studying <a href="https://www.worldcat.org/title/theorie-analytique-de-la-chaleur/oclc/2688081">heat transfers</a>. Because it makes it easier to study phenomena involving <a href="https://en.wikipedia.org/wiki/Wave">waves</a> - and with it signal processing, electro magnetism, mechanics, differential equations - the Fourier transform is undoubtedly one of the most important discoveries of the XIX&rsquo;s century.</p>
 <p>In essence, one transforms a function $f: t \to f(t)$ of time to a function $\hat{f}: \omega \to \hat{f}(\omega)$ of frequencies. The animation below - credit <a href="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif">wikipedia</a> - shows that mapping for a function defined as the sum of six sinusoids.</p>
-<!-- raw HTML omitted -->
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif" alt="fourier"></p>
 <p>Numerically, Fourier transforms are approximated with finite series, see for instance <a href="http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf">these lecture notes</a>. Each coefficient of the approximated series corresponds to the amplitude of a given frequency. <em>That</em> is our equalizer. Numerically, one needs an efficient way to compute this approximated series, and while javascript may not be the best candidate for doing so, the <a href="https://p5js.org/reference/#/libraries/p5.sound">sound</a> library of P5.js provides us with an implementation. To dig a bit deeper, here are two more references:</p>
 <ul>
 <li><a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/www/notes/fourier/fourier.pdf">Lecture notes</a> about the Fourier and the Fast Fourier Transform;</li>
@@ -343,12 +343,26 @@ if (!doNotTrack) {
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
   
 
-  <script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-  </script>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/highlight.min.js"></script>
+
+
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+</script>
 
 
 

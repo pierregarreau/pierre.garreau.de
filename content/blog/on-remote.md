@@ -6,42 +6,8 @@ isProcessing: false
 description: ""
 tags: [ "Start-ups", "Tech" ]
 ---
-<style>
-.links {
-  stroke: #000;
-  stroke-opacity: 0.2;
-}
-.polygons {
-  fill: none;
-  stroke: #000;
-}
-.polygons :first-child {
-  fill: #f00;
-}
-.sites {
-  fill: #000;
-  stroke: #fff;
-}
-.sites :first-child {
-  fill: #fff;
-}
-.voronoi-holder {
-  justify-content: center;
-}
-.img-center {
-  width:60%%;
-}
-.column {
-  float: left;
-  width: 50%;
-}
-/* Clear floats after image containers */
-.row {
-  display: flex;
-  margin: 25px;
-}
-</style>
-<svg id="voronoi-holder" width="650" height="500"></svg>
+
+{{< voronoi >}}
 *(Above, credits from [this github](https://bl.ocks.org/git-ashish/b04d673fbfc665f2c98f382e2c79a9ad) using d3 to render Voronoi tesselations in SVG).*
 
 Lately we've seen a surge of interest towards *remote*. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in [the basecamp books](https://basecamp.com/books), and much can be found on the web -- see [the survival guide of Alexey](https://leanpub.com/working-from-fucking-home), to mention only one -- I find it interesting to look at remote in practice, inside the daily of an early stage company.
@@ -70,17 +36,17 @@ By putting the product first -- the company *is* a product, to use the words of 
 
 ## Our process is a simple heartbeat.
 
-<!-- <img src="https://miro.medium.com/max/1024/1*AfiA2Zrf24FFVLWoxkzXow.gif" class='img-center'/>
+<!AfiA2Zrf24FFVLWoxkzXow-- ![](https://miro.medium.com/max/1024/1*AfiA2Zrf24FFVLWoxkzXow.gif)
 *(Above, credits from [this medium](https://heartbeat.fritz.ai/animated-stylegan-image-transitions-with-runwayml-57a2e20db80f) using p5.js to transition landscapes in cycle).* -->
 
 We call it the *OKR and the Pie*. It's our answer to remote, empowered and product first. Put simply, it's a heartbeat which comes in two flavors, somewhat regular. The first, the OKRs, are set quartely, and allow us to pause and reflect on the bigger picture. The second, the Pie, works in sprint bundles, often close to 6 weeks, and provides focus. The two together allow us to switch context, and stay on the right pace.
 
 **:dart: The OKRs.** Objectives & Key Results. In a nutshell: what are we trying to accomplish, and how do we measure it? We meet every quarter with the full team, usually physically in the same office, and discuss our goals for the upcoming months. It is a good time to communicate and refine the vision, and gather ideas on how everyone can best contribute. Also a good opportunity to reflect on our process, and make sure we are measuring what counts.
 
-<img src="/img/OKR_O.png" class='img-center'/>
+![OKR_O](/img/OKR_O.png)
 *(Above, our OKR planning at Searoutes for 20Q1, split in goals per field).*
 
-<img src="/img/OKR_KR.png" class='img-center'/>
+![OKR_KR](/img/OKR_KR.png)
 *(Above, the Key Results for Marketing supporting our 2 Marketing goals).*
 
 Whether or not the framework is completly right, it's the discussion coming out of setting the objectives that matter. Because *the team sets its own goals*, there is buy-in of all participants. We all feel empowered, and responsible for achieving the goals we set out to establish.
@@ -93,7 +59,7 @@ Since then I have pushed toward building in iterations, always the simplest vers
 
 **:surfer: The Sprint.** This is our week's worth of work. It is not about going fast, but about scoping. At the beginning of every sprint, we put our OKRs on the (remote) board, and align against it. Sales, Marketing, Tech and Product all go through the same exercise: what do we achieve this week & how do we know we achieved it? During the sprint, we usually meet over breakfast to discuss topics not related to work, but likely to inspire or suggest new ideas. We close our sprints in a weekly meeting we call *friday for winners*, see [the book of C. Wodtke](http://eleganthack.com/radical-focus-is-here/), where we share new features, clients, leads, and briefly touch on what's next.
 
-<img src="/img/sprint.png" class='img-center'/>
+![sprint](/img/sprint.png)
 *(Above, one of our recent sprints. Stories are user focused, and estimated in amount of work client / server, and prioritized).*
 
 In summary, the heartbeat is simple: 
@@ -119,11 +85,8 @@ SHAG stands for *Slack - Hubspot - Airtable - Github*. It is minimal, as you wou
 
 At Searoutes, we put transparency, independence and product first. After a few iterations, we organised our heartbeat around OKRs, Pies and Sprints. We meet every week and every quarter to align context, not tasks. This pushed us to use the *SHAG* toolkit. No overhead, everything happens online.
 
-<img src="https://media.giphy.com/media/xUPGctM05XInxrxFNS/giphy.gif" class='img-center'/>
+![giphy](https://media.giphy.com/media/xUPGctM05XInxrxFNS/giphy.gif)
 
 <!-- #### Acknowledgement
 
 Thank you Antoine, this article improved in clarity thanks to your feedback! -->
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script type="text/javascript" src="/js/d3/voronoi.js"></script>

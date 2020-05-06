@@ -7,7 +7,7 @@ description: "Reflections on the role of Chief Technology Officer (CTO)"
 tags: [ "Start-ups", "Tech" ]
 ---
 
-<img src="http://breedinfo.ru/uploads/posts/2016-03/26_orangutan.jpg" class='img-center'/>
+![orangutan](http://breedinfo.ru/uploads/posts/2016-03/26_orangutan.jpg)
 
 Following the closing of a successful series A, the arrival of new management causes a departure rate of 65%, from both tech and product. Sounds familiar ? One of many stories the startup world offers! Now, high turnover rates in early stage companies are common. However, when too many fingers point to the newly appointed *Chief Technology Officer*, or CTO, it begs the question - why ? After all, *what makes a good CTO to start with ?*
 
@@ -29,7 +29,7 @@ To compensate for his lack of time, the orangutan puts in place team structures.
 
 In early stage companies, the chief tech orangutan is often jumping into his role underprepared, for instance moving from a former position as head or VP of engineering. Immediate action - to mark his territory - is to show the other monkeys how clever he is, in an attempt to gain trust and respect. Alas, this creates confusion! The role of the chief orangutan is to show the way, gather around the common goal, foster all the skills available in his cast. *He is not an expert!* I have seen CTO's explaining how to create rational database models before figuring out exactly *why* building it. Or imposing technologies on his fellows that were beyond the team consensus. While the chief tech orangutan may be knowledgeable - and he should ! - the many experts around him should inform all decisions. Remember startups are *team* adventures. The best tech is built by fast, repeated trial and error of the team. It's up to the CTO to guide this.
 
-<img src="https://image.slidesharecdn.com/whatagileleadersaregreatat-byniranjannerlige-161122050210/95/agile-tour-2016-chennai-what-agile-leaders-are-great-at-by-niranjan-nerlige-16-638.jpg?cb=1479791716" class='img-center'/>
+![agile](https://image.slidesharecdn.com/whatagileleadersaregreatat-byniranjannerlige-161122050210/95/agile-tour-2016-chennai-what-agile-leaders-are-great-at-by-niranjan-nerlige-16-638.jpg?cb=1479791716)
 
 CTO's ought to recognize their role changes with time, as they grow to be better leaders, but desperately need escaping the *know-it-all* pitfall. This creates confusion, distrust and actually slows down the company growth. Same pitfall as letting the opinion of the highest paid person in the room dominate the discussion. So let's conclude this section with another one of my favorite true story:
 
@@ -37,7 +37,7 @@ CTO's ought to recognize their role changes with time, as they grow to be better
 
 So now that we have discussed what the CTO is not - not an expert, not a lobbyist, not a top down executive - let's discuss what attributes he needs to facilitate his journey.
 
-<img src="http://assets.amuniversal.com/16620320e4ef012fed51001dd8b71c47" class='img-center'/>
+![dilbert](http://assets.amuniversal.com/16620320e4ef012fed51001dd8b71c47)
 
 ## What the chief tech orangutan should.
 

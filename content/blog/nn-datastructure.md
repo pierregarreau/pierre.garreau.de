@@ -54,7 +54,7 @@ class GradientDescent(Optimizer):
 
 Our running assumption: we are looking for a function $h$ and a parameter set $\theta$ so that, $h(x^i, \theta)$ is as close as possible to $y^i$. In the context of this blog post, $h(x^i, \theta)$ is the output of a FFNN. For an introduction, see the [Stanford lecture notes of Andrew Ng](http://cs229.stanford.edu/syllabus.html), Lecture 9. As an example, see below a 3 Layer feed forward network.
 
-<img src="/img/nn.jpg" class='img-center'/>
+![nn](/img/nn.jpg)
 
 Above, $g$ is the activation function of each neuron. To make things simple all neurons have the same activation function. This three layer architecture is best described by two matrices $\theta^{(1)}$ and $\theta^{(2)}$ of parameters. These are the parameters that the model learns, as described in the previous section. $\theta^{(1)}$ and $\theta^{(2)}$ are needed to compute the output of each layer $(1)$ and $(2)$, and ultimately $h(x^i, \theta)$. Conclusion, $h$ is thus computed as a sequence of matrix-vector multiplications. This sequence of operations, called *feed forward* can be seen in the code snippet below:
 

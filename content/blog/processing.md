@@ -8,9 +8,7 @@ description: "Build an equalizer with the Fourier transform and P5.js"
 tags: [ "Tech", "Arts", "JS" ]
 ---
 
-<div id="sketch-holder">
-  <!-- p5 sketch goes here -->
-</div>
+{{< p5fft >}}
 
 **Above**: Live graphics created for a music set at *Pimp the Chateau*, France, December 2009. Click anywhere on the page to *pause / play*. Music [Maison Kitsune](https://shop.kitsune.fr/music/music/compilation.html?___store=kitsune_fr_fr).
 
@@ -37,7 +35,7 @@ Joseph Fourier is the father of a method used to decompose square integrable fun
 
 In essence, one transforms a function $f: t \to f(t)$ of time to a function $\hat{f}: \omega \to \hat{f}(\omega)$ of frequencies. The animation below - credit [wikipedia](https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif) - shows that mapping for a function defined as the sum of six sinusoids.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif" class='img-center'/>
+![fourier](https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif)
 
 Numerically, Fourier transforms are approximated with finite series, see for instance [these lecture notes](http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf). Each coefficient of the approximated series corresponds to the amplitude of a given frequency. *That* is our equalizer. Numerically, one needs an efficient way to compute this approximated series, and while javascript may not be the best candidate for doing so, the [sound](https://p5js.org/reference/#/libraries/p5.sound) library of P5.js provides us with an implementation. To dig a bit deeper, here are two more references:
 
@@ -57,7 +55,7 @@ An equalizer can be defined as *a sequence of discrete Fourier transforms on an 
 
 In the algorithm above, the `display` function is where you can get creative. The Fourier transform will give us a list of amplitudes. This can be mapped to a color or transparency scheme, for example. For the frequencies, we are looking for a spatial map, from a list to another data structure.
 
-Let's take the grid showed in the example at the top of this page. Frequencies are listed from the bottom left corner to the top right corner. We map indexed frequencies from $1, \ldots, N$ to a position $(i,j)$ on the grid which reflect this bottom-left-to-top-right logic.
+Let's take the grid showed in the example at the top of this page. Frequencies are listed from the bottom left corner to the top right corner. We map indexed frequencies from `$1, \ldots, N$` to a position `$(i,j)$` on the grid which reflect this bottom-left-to-top-right logic.
 
 So, given sampled amplitude and frequencies, what would an API for this Grid look like ? We need some sort of initialization to create the grid, first based on number of rows and columns, then optimized to fit our canvas size. Then we need an `equalize` routine, which will display the frequencies on the grid. In javascript, this would look something like this:
 
@@ -156,39 +154,3 @@ That's it! Is only missing the implementation of the Grid object. I suggested an
 ## Closing
 
 Processing is an amazing framework for prototyping visual arts with code. The community around the project is vast, see for instance this online series of tutorials at [hello processing](http://hello.processing.org/) - and the creativity used in the [applications](https://www.processing.org/exhibition/) of the library is outstanding. We have seen in this post that 50 lines of code give you dynamic graphics generation based on an audio stream. Imagine what you can do with a 100 lines !!!
-
-
-
-<script type="text/javascript" src="/js/p5/p5.min.js"></script>
-<script type="text/javascript" src="/js/p5/p5.dom.js"></script>
-<script type="text/javascript" src="/js/p5/p5.sound.min.js"></script>
-<script type="text/javascript" src="/js/p5/sketch.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-           extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-      // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>

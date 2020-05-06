@@ -1,0 +1,48 @@
+<style>
+    .links {
+        stroke: #000;
+        stroke-opacity: 0.2;
+    }
+
+    .polygons {
+        fill: none;
+        stroke: #000;
+    }
+
+    .polygons :first-child {
+        fill: #f00;
+    }
+
+    .sites {
+        fill: #000;
+        stroke: #fff;
+    }
+
+    .sites :first-child {
+        fill: #fff;
+    }
+
+    .voronoi-holder {
+        justify-content: center;
+    }
+
+    .img-center {
+        width: 60%%;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+
+    /* Clear floats after image containers */
+    .row {
+        display: flex;
+        margin: 25px;
+    }
+</style>
+
+<svg id="voronoi-holder" width="750" height="300"></svg>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src="/js/d3/voronoi.js"></script>

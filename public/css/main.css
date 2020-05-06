@@ -608,10 +608,11 @@ section.main .content .markdown pre {
   font-size: 1rem;
   background-color: #f7f7f7;
 }
-section.main .content .markdown code {
+section.main .content .markdown code:not(hljs) {
   /* enclosed by single backtick (`) */
-  padding: .15em .5em;
+  padding: 0.15em 0.5em;
   border-radius: 2px;
+  background-color: #f7f7f7;
 }
 section.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -627,7 +628,7 @@ section.main .content .markdown pre {
 }
 section.main .content .markdown pre code {
   /* enclosed by 3 backticks (```) */
-  padding: 0;
+  padding: 1rem;
   font-size: 1rem;
 }
 section.main .content .markdown a code {
