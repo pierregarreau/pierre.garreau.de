@@ -5,7 +5,7 @@ layoutdir     = "layouts"
 publishdir    = "public"
 theme         = "ezhil"
 author        = "Pierre Garreau"
-title         = "Blog bazar"
+title         = "Blog bazar of a Frenchy"
 googleAnalytics = "UA-35367847-1"
 enableEmoji   = true
 
