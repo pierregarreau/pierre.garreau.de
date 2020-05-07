@@ -1,196 +1,95 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
-<meta name="author" content="Pierre Garreau">
-<meta name="description" content="On feed forward neural networks and numpy">
-
-<meta property="og:title" content="Why should you build your own Neural Networks library?" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Why should you build your own Neural Networks library? - Blog bazar</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Why should you build your own Neural Networks library?" />
 <meta property="og:description" content="On feed forward neural networks and numpy" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pierregarreau.github.io/blog/nn-datastructure/" />
 <meta property="article:published_time" content="2018-04-13T13:10:09+01:00" />
 <meta property="article:modified_time" content="2018-04-13T13:10:09+01:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why should you build your own Neural Networks library?"/>
+<meta name="twitter:description" content="On feed forward neural networks and numpy"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel="stylesheet">
 
+	<link rel="stylesheet" type="text/css" media="screen" href="https://pierregarreau.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://pierregarreau.github.io/css/main.css" />
 
-<title>
-
-
-     Why should you build your own Neural Networks library? 
-
-</title>
-<link rel="canonical" href="https://pierregarreau.github.io/blog/nn-datastructure/">
-
-
-
-
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-
-
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
-
-
-
-    
-    <link rel="stylesheet" href="/css/reset.css?t=2020-05-06%2020%3a04%3a15.051926%20%2b0200%20CEST%20m%3d%2b0.136646944">
-    <link rel="stylesheet" href="/css/pygments.css?t=2020-05-06%2020%3a04%3a15.051926%20%2b0200%20CEST%20m%3d%2b0.136646944">
-    <link rel="stylesheet" href="/css/main.css?t=2020-05-06%2020%3a04%3a15.051926%20%2b0200%20CEST%20m%3d%2b0.136646944">
-    
-        <link rel="stylesheet" href="/css/override.css?t=2020-05-06%2020%3a04%3a15.051926%20%2b0200%20CEST%20m%3d%2b0.136646944">
-    
-
-
-
-
-<link rel="shortcut icon"
-
-    href="/img/leaf.ico"
-
->
-
-
-
-
-
-
-
-
+	
+	<script src="https://pierregarreau.github.io/js/main.js"></script>
 </head>
 
 
-<body lang="en">
 
-<section class="header">
-    <div class="container">
-        <div class="content">
-            
-                
-                
-                
-                
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                
-                <a href="/"><img class="avatar" src="/img/profile.png" srcset="https://pierregarreau.github.io/img/profile.png 1x"></a>
-            
-            <a href="/"><div class="name">Pierre Garreau</div></a>
-            
-            <nav>
-                <ul>
-                    
-                        <li class="nav-blog"><a href="https://pierregarreau.github.io/blog/"><span>Blog</span></a></li>
-                    
-                        <li class="nav-about"><a href="https://pierregarreau.github.io/about/"><span>About</span></a></li>
-                    
-                </ul>
-            </nav>
-        </div>
-    </div>
-</section>
-
-<section class="icons">
-    <div class="container">
-        <div class="content">
-        
-            <a href="//github.com/pierregarreau" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
-        
-
-        
-
-        
-            <a href="//twitter.com/pierre_garreau" target="_blank" rel="noopener"><img class="icon" src="/img/twitter.svg" alt="twitter" /></a>
-        
+<body>
+	<div class="container wrapper post">
+		<div class="header"><div class="content">
+	
+		
+		
+		
+		
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<a href="/"><img class="avatar" src="/img/profile.png" srcset="https://pierregarreau.github.io/img/profile.png 1x"></a>
+	
+	<a href="/"><div class="name">Pierre Garreau</div></a>
+	
+	<div class="site-description"><nav class="nav social">
+			<ul class="flat"></ul>
+		</nav>
+	</div>
+	
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/blog/">Blog</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
 
 	
-
-        
-
-        
-
-        
-            <a href="//linkedin.com/in/pgarreau" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
-        
-
-        
-
-        
-
-        
-            <a href="//instagram.com/theo_calimero" target="_blank" rel="noopener"><img class="icon" src="/img/instagram.svg" alt="instagram" /></a>
-        
-
-        
-
-        
-
-        
-            <a href="mailto:pierre@garreau.de"><img class="icon" src="/img/email.svg" alt="email" /></a>
-        
-
-        
-
-        
-        </div>
-    </div>
-</section>
-
-
-<section class="main post non-narrow zero-top-spacing">
-    <div class="container">
-        <div class="content">
-            <div class="front-matter">
-                <div class="title-container">
-                    <div class="page-heading">
-
-    Why should you build your own Neural Networks library?
-
+</div>
 </div>
 
-                    <div class="initials"><a href="https://pierregarreau.github.io/"></a></div>
-                </div>
-                <div class="meta">
-                    
-                    <div class="date" title='Fri Apr 13 2018 13:10:09 &#43;0100'>Apr 13, 2018</div>
-                    
-                    
-		    <div class="reading-time"><div class="middot"></div>7 minutes read</div>
-                    
-                </div>
-            </div>
-            <div class="markdown">
-                <p>I have had this conversation with new hires about the benefits of following an online class on Machine Learning, such as the one offered by <a href="https://www.coursera.org/learn/machine-learning">Coursera</a>. It is rather astonishing to see how fast one can take the concepts from these classes - from Coursera, Udacity, Stanford or MIT - and apply them to real world problems. The recent addition of the course on <a href="https://www.coursera.org/learn/ai">Applied AI</a> to the Coursera catalogue is another example of this ever growing supply of good online AI courses.</p>
+
+		<div class="post-header">
+			<h1 class="title">Why should you build your own Neural Networks library?</h1>
+			<div class="meta">Posted at &mdash; Apr 13, 2018</div>
+		</div>
+
+		<div class="markdown">
+			<p>I have had this conversation with new hires about the benefits of following an online class on Machine Learning, such as the one offered by <a href="https://www.coursera.org/learn/machine-learning">Coursera</a>. It is rather astonishing to see how fast one can take the concepts from these classes - from Coursera, Udacity, Stanford or MIT - and apply them to real world problems. The recent addition of the course on <a href="https://www.coursera.org/learn/ai">Applied AI</a> to the Coursera catalogue is another example of this ever growing supply of good online AI courses.</p>
 <p>The thing is however, following the course does not guarantee you will master all the concepts. This illusion dates back from Charlemagne when school was invented. Going to class does not make you pass the exam. People learn by doing. There is no way around it. In the case of new hires, they often learn once we dig into the implementation details, on the job. However, they could have - and should have! - gained a tremendous amount of time - and knowledge! - by implementing their own code, when following the online class.</p>
 <p>This blog post is about <strong>why you should implement your own Neural Networks library</strong>. The post is not intended as yet-another-post on Neural Networks, but rather as a data structure discussion: if I were to implement a Neural Net library, what data structure would I use to represent the to-be-calibrated parameters?</p>
 <p>It turns out that <code>numpy arrays</code> have properties which will make this data structure discussion easy. You have guessed it already, we will implement this neural net library in Python. But before we get into the meat of the discussion, let&rsquo;s first pose the problem.</p>
@@ -200,89 +99,89 @@
 \theta$ which minimizes the overall prediction error. Mathematically,</p>
 <p>$$\min {\theta \in \Theta}: J(\theta) = \frac{1}{M} \sum_{i=1}^M L(h(x^i,\theta),y^i).$$</p>
 <p>Above, the function $J$ has domain $\mathbb{R}^{size of parameter set}$ and range $\mathbb{R}$, i.e. $J$ is a function which takes a vector $\theta$ as input and outputs a real number. Luckily for us, there exists a panel of solvers &ndash; implemented in Python &ndash; which do just that. Check out the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html">optimization package of scipy</a> for info. As a reminder, <a href="https://en.wikipedia.org/wiki/Gradient_descent#Computational_examples">gradient descent</a> updates the vector of parameters all at once, in the direction of the steepest descent, towards the minimum.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GradientDescent</span>(Optimizer):
-    <span style="color:#f92672">...</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#00f">class</span> <span style="color:#2b91af">GradientDescent</span>(Optimizer):
+    ...
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">minimize</span>(self, objective: Callable, init: np<span style="color:#f92672">.</span>ndarray) <span style="color:#f92672">-&gt;</span> np<span style="color:#f92672">.</span>ndarray:
-        learning_rate <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>options<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;learning_rate&#39;</span>, <span style="color:#ae81ff">1.0</span>)
-        maxiter <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>options<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;maxiter&#39;</span>, <span style="color:#ae81ff">500</span>)
-        tol <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>options<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;tol&#39;</span>, <span style="color:#ae81ff">1e-9</span>)
+    <span style="color:#00f">def</span> minimize(self, objective: Callable, init: np.ndarray) -&gt; np.ndarray:
+        learning_rate = self.options.get(<span style="color:#a31515">&#39;learning_rate&#39;</span>, 1.0)
+        maxiter = self.options.get(<span style="color:#a31515">&#39;maxiter&#39;</span>, 500)
+        tol = self.options.get(<span style="color:#a31515">&#39;tol&#39;</span>, 1e-9)
 
-        theta <span style="color:#f92672">=</span> init
-        <span style="color:#66d9ef">for</span> iterCounter <span style="color:#f92672">in</span> range(maxiter):
-            [cost, grad] <span style="color:#f92672">=</span> objective(theta)
-            theta <span style="color:#f92672">-=</span> learning_rate <span style="color:#f92672">*</span> grad
-            l2GradDelta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sum(grad <span style="color:#f92672">*</span> grad)
-            <span style="color:#66d9ef">if</span> l2GradDelta <span style="color:#f92672">&lt;</span> tol:
-                self<span style="color:#f92672">.</span>res<span style="color:#f92672">.</span>message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;optim successful&#39;</span>
-                self<span style="color:#f92672">.</span>res<span style="color:#f92672">.</span>success <span style="color:#f92672">=</span> True
-                <span style="color:#66d9ef">break</span>
-        <span style="color:#66d9ef">return</span> theta
+        theta = init
+        <span style="color:#00f">for</span> iterCounter <span style="color:#00f">in</span> range(maxiter):
+            [cost, grad] = objective(theta)
+            theta -= learning_rate * grad
+            l2GradDelta = np.sum(grad * grad)
+            <span style="color:#00f">if</span> l2GradDelta &lt; tol:
+                self.res.message = <span style="color:#a31515">&#39;optim successful&#39;</span>
+                self.res.success = True
+                <span style="color:#00f">break</span>
+        <span style="color:#00f">return</span> theta
 </code></pre></div><ul>
 <li>Point taken, then, that supervised learning methods attempt to find a vector of parameters that minimizes an objective function. That function is written in terms of a given dataset of features and label. At the <code>learning</code> phase, then, $\theta$ best be represented as a <code>vector</code>.</li>
 </ul>
 <h2 id="to-learn-you-need-to-predict">To learn, you need to predict</h2>
 <p>Our running assumption: we are looking for a function $h$ and a parameter set $\theta$ so that, $h(x^i, \theta)$ is as close as possible to $y^i$. In the context of this blog post, $h(x^i, \theta)$ is the output of a FFNN. For an introduction, see the <a href="http://cs229.stanford.edu/syllabus.html">Stanford lecture notes of Andrew Ng</a>, Lecture 9. As an example, see below a 3 Layer feed forward network.</p>
-<!-- raw HTML omitted -->
+<p><img src="/img/nn.jpg" alt="nn"></p>
 <p>Above, $g$ is the activation function of each neuron. To make things simple all neurons have the same activation function. This three layer architecture is best described by two matrices $\theta^{(1)}$ and $\theta^{(2)}$ of parameters. These are the parameters that the model learns, as described in the previous section. $\theta^{(1)}$ and $\theta^{(2)}$ are needed to compute the output of each layer $(1)$ and $(2)$, and ultimately $h(x^i, \theta)$. Conclusion, $h$ is thus computed as a sequence of matrix-vector multiplications. This sequence of operations, called <em>feed forward</em> can be seen in the code snippet below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NeuralNet</span>(Model):
-  <span style="color:#f92672">...</span>
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_feed_forward</span>(self, features: np<span style="color:#f92672">.</span>ndarray) <span style="color:#f92672">-&gt;</span> np<span style="color:#f92672">.</span>ndarray:
-      a <span style="color:#f92672">=</span> add_bias(features)
-      <span style="color:#66d9ef">for</span> layerIndex, theta <span style="color:#f92672">in</span> zip(range(self<span style="color:#f92672">.</span>n_layers), self<span style="color:#f92672">.</span>thetas):
-          z <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(a, theta<span style="color:#f92672">.</span>transpose())
-          sigmoid <span style="color:#f92672">=</span> Activation<span style="color:#f92672">.</span>sigmoid(z)
-          <span style="color:#66d9ef">if</span> layerIndex <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>n_layers <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>:
-              a <span style="color:#f92672">=</span> add_bias(sigmoid)
-          <span style="color:#66d9ef">else</span>:
-              a <span style="color:#f92672">=</span> sigmoid
-      <span style="color:#66d9ef">return</span> a
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#00f">class</span> <span style="color:#2b91af">NeuralNet</span>(Model):
+  ...
+  <span style="color:#00f">def</span> _feed_forward(self, features: np.ndarray) -&gt; np.ndarray:
+      a = add_bias(features)
+      <span style="color:#00f">for</span> layerIndex, theta <span style="color:#00f">in</span> zip(range(self.n_layers), self.thetas):
+          z = np.dot(a, theta.transpose())
+          sigmoid = Activation.sigmoid(z)
+          <span style="color:#00f">if</span> layerIndex &lt; self.n_layers - 2:
+              a = add_bias(sigmoid)
+          <span style="color:#00f">else</span>:
+              a = sigmoid
+      <span style="color:#00f">return</span> a
 </code></pre></div><ul>
 <li>Point taken, then, that the most convenient way to represent the parameters of a FFNN internally &ndash; for <code>prediction</code> to be efficient &ndash; is a <code>list of matrices</code>.</li>
 </ul>
 <h2 id="what-datastructure-for-theta-">What datastructure for $\theta$ ?</h2>
 <p>At this point we agree there are two representations possible for $theta$: a <em>vector</em> representation and a <em>list of matrices</em> representation. Which one is best?</p>
 <p>Let&rsquo;s recall what the <code>reshape</code> function does, docs <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html">here</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">&gt;&gt;&gt;</span> a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">4</span>)
-<span style="color:#f92672">&gt;&gt;&gt;</span> a
-array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
-<span style="color:#f92672">&gt;&gt;&gt;</span> b <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>))
-<span style="color:#f92672">&gt;&gt;&gt;</span> b
-array([[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
-       [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]])
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">&gt;&gt;&gt; <span style="color:#00f">import</span> numpy <span style="color:#00f">as</span> np
+&gt;&gt;&gt; a = np.arange(4)
+&gt;&gt;&gt; a
+array([0, 1, 2, 3])
+&gt;&gt;&gt; b = a.reshape((2,2))
+&gt;&gt;&gt; b
+array([[0, 1],
+       [2, 3]])
 </code></pre></div><p>What happens now when one modifies <code>a</code>?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-<span style="color:#f92672">&gt;&gt;&gt;</span> a
-array([ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>,  <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">3</span>])
-<span style="color:#f92672">&gt;&gt;&gt;</span> b
-array([[ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>],
-       [ <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">3</span>]])
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">&gt;&gt;&gt; a[1] = 10
+&gt;&gt;&gt; a
+array([ 0, 10,  2,  3])
+&gt;&gt;&gt; b
+array([[ 0, 10],
+       [ 2,  3]])
 </code></pre></div><p>Yes! <code>b</code> is in fact a reference, it is pointing to the same values as <code>a</code>. That is, the actual elements of <code>a</code> and <code>b</code> are the same. Let&rsquo;s confirm this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> b[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
-<span style="color:#f92672">&gt;&gt;&gt;</span> a
-array([ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>,  <span style="color:#ae81ff">3</span>])
-<span style="color:#f92672">&gt;&gt;&gt;</span> b
-array([[ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>],
-       [<span style="color:#ae81ff">20</span>,  <span style="color:#ae81ff">3</span>]])
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">&gt;&gt;&gt; b[1,0] = 20
+&gt;&gt;&gt; a
+array([ 0, 10, 20,  3])
+&gt;&gt;&gt; b
+array([[ 0, 10],
+       [20,  3]])
 </code></pre></div><p>It is therefore possible to work with one parameter set, and have <em>two</em> representations in our neural network implementation. That comes really handy for this specific problem! One can then define <code>theta</code> as a vector of parameters. This will be used for the optimization. And another representation <code>thetas</code> as a list f matrices, this time used for the feed forward and back propagations. Below the two code snippets which do this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NeuralNet</span>(Model):
-    <span style="color:#66d9ef">def</span> __init__(self, layers: List):
-      <span style="color:#f92672">...</span>
-      self<span style="color:#f92672">.</span>layers <span style="color:#f92672">=</span> layers
-      self<span style="color:#f92672">.</span>n_layers <span style="color:#f92672">=</span> len(layers)
-      self<span style="color:#f92672">.</span>n_parameters <span style="color:#f92672">=</span> sum([next_layer <span style="color:#f92672">*</span> (layer <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> layer, next_layer <span style="color:#f92672">in</span> zip(layers[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], layers[<span style="color:#ae81ff">1</span>:])])
-      self<span style="color:#f92672">.</span>theta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>empty(self<span style="color:#f92672">.</span>n_parameters)
-      self<span style="color:#f92672">.</span>thetas <span style="color:#f92672">=</span> []
-      self<span style="color:#f92672">.</span>_decompose(self<span style="color:#f92672">.</span>theta, self<span style="color:#f92672">.</span>thetas)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NeuralNet</span>(Model):
-  <span style="color:#f92672">...</span>
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_decompose</span>(self, theta: np<span style="color:#f92672">.</span>ndarray, thetas: List) <span style="color:#f92672">-&gt;</span> List[np<span style="color:#f92672">.</span>ndarray]:
-    idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> l, next_l <span style="color:#f92672">in</span> zip(self<span style="color:#f92672">.</span>layers[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], self<span style="color:#f92672">.</span>layers[<span style="color:#ae81ff">1</span>:]):
-        n_params <span style="color:#f92672">=</span> next_l <span style="color:#f92672">*</span> (l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
-        thetas<span style="color:#f92672">.</span>append(theta[idx:idx<span style="color:#f92672">+</span>n_params]<span style="color:#f92672">.</span>reshape((next_l, l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)))
-        idx <span style="color:#f92672">+=</span> n_params
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#00f">class</span> <span style="color:#2b91af">NeuralNet</span>(Model):
+    <span style="color:#00f">def</span> __init__(self, layers: List):
+      ...
+      self.layers = layers
+      self.n_layers = len(layers)
+      self.n_parameters = sum([next_layer * (layer + 1) <span style="color:#00f">for</span> layer, next_layer <span style="color:#00f">in</span> zip(layers[:-1], layers[1:])])
+      self.theta = np.empty(self.n_parameters)
+      self.thetas = []
+      self._decompose(self.theta, self.thetas)
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#00f">class</span> <span style="color:#2b91af">NeuralNet</span>(Model):
+  ...
+  <span style="color:#00f">def</span> _decompose(self, theta: np.ndarray, thetas: List) -&gt; List[np.ndarray]:
+    idx = 0
+    <span style="color:#00f">for</span> l, next_l <span style="color:#00f">in</span> zip(self.layers[:-1], self.layers[1:]):
+        n_params = next_l * (l + 1)
+        thetas.append(theta[idx:idx+n_params].reshape((next_l, l + 1)))
+        idx += n_params
 </code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>In order to train Feed Forward Neural Networks, one needs two representations of the same parameter set $\theta$:</p>
 <ul>
@@ -298,32 +197,49 @@ array([[ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</s
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
-                <br>
-                
-                  <div class="tags">
-                    <strong>Tags:</strong>
-                  
-                    <a href="/tags/tech">Tech</a>
-                  
-                    <a href="/tags/ml">ML</a>
-                  
-                    <a href="/tags/math">Math</a>
-                  
-                    <a href="/tags/python">Python</a>
-                  
-                  </div>
-                  <br />
-                
-                <p class="back-to-posts"><a href="/blog">Back to posts</a></p>
-            </div>
-            <br>
-            <div class="disqus">
-                
-            </div>
-            
-        </div>
-    </div>
-</section>
+		</div>
+
+		<div class="post-tags">
+			
+				
+					<nav class="nav tags">
+							<ul class="flat">
+								
+								<li><a href="/tags/tech">Tech</a></li>
+								
+								<li><a href="/tags/ml">ML</a></li>
+								
+								<li><a href="/tags/math">Math</a></li>
+								
+								<li><a href="/tags/python">Python</a></li>
+								
+							</ul>
+					</nav>
+				
+			
+		</div>
+		</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
 
 
 
@@ -339,32 +255,5 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-
-  
-
-
-
-
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/highlight.min.js"></script>
-
-
-<script type="text/javascript">
-  hljs.initHighlightingOnLoad();
-</script>
-
-
-
-
-
 </body>
 </html>
-

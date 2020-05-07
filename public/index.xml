@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog bazar of another frenchy on Blog bazar of Pierre Garreau</title>
+    <title>Blog bazar of another frenchy on Blog bazar</title>
     <link>https://pierregarreau.github.io/</link>
-    <description>Recent content in Blog bazar of another frenchy on Blog bazar of Pierre Garreau</description>
+    <description>Recent content in Blog bazar of another frenchy on Blog bazar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Jul 2016 13:42:16 +0200</lastBuildDate>
@@ -17,8 +17,7 @@
       <pubDate>Wed, 22 Apr 2020 19:40:58 +0200</pubDate>
       
       <guid>https://pierregarreau.github.io/blog/on-remote/</guid>
-      <description>(Above, credits from this github using d3 to render Voronoi tesselations in SVG).
-Lately we&amp;rsquo;ve seen a surge of interest towards remote. Working from home has become a standard under the current circumstances, and all have embraced this new way of organising and collaborating. While the principles of remote are explained at length in the basecamp books, and much can be found on the web &amp;ndash; see the survival guide of Alexey, to mention only one &amp;ndash; I find it interesting to look at remote in practice, inside the daily of an early stage company.</description>
+      <description>.links { stroke: #000; stroke-opacity: 0.2; } .polygons { fill: none; stroke: #000; } .polygons :first-child { fill: #f00; } .sites { fill: #000; stroke: #fff; } .sites :first-child { fill: #fff; } .voronoi-holder { justify-content: center; } .img-center { width: 60%%; } .column { float: left; width: 50%; } .row { display: flex; margin: 25px; }     (Above, credits from this github using d3 to render Voronoi tesselations in SVG).</description>
     </item>
     
     <item>
@@ -55,7 +54,7 @@ Lately we&amp;rsquo;ve seen a surge of interest towards remote. Working from hom
       
       <guid>https://pierregarreau.github.io/blog/processing/</guid>
       <description>Above: Live graphics created for a music set at Pimp the Chateau, France, December 2009. Click anywhere on the page to pause / play. Music Maison Kitsune.
-Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special. We decided it needed an identity.</description>
+Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special.</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JS on Blog bazar of Pierre Garreau</title>
+    <title>JS on Blog bazar</title>
     <link>https://pierregarreau.github.io/tags/js/</link>
-    <description>Recent content in JS on Blog bazar of Pierre Garreau</description>
+    <description>Recent content in JS on Blog bazar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Nov 2017 20:42:14 +0100</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://pierregarreau.github.io/blog/processing/</guid>
       <description>Above: Live graphics created for a music set at Pimp the Chateau, France, December 2009. Click anywhere on the page to pause / play. Music Maison Kitsune.
-Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special. We decided it needed an identity.</description>
+Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special.</description>
     </item>
     
   </channel>
