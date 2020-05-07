@@ -1,0 +1,46 @@
+<div class="header"><div class="content">
+	{{ if .Site.Params.gravatar }}
+	<a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><img class="avatar" src="https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=50" rcset="https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=100 2x, https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=150 3x, https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=200 4x"></a>
+	{{ else if .Site.Params.avatar }}
+		{{ $.Scratch.Add "srcset" (slice (printf "%s 1x" (.Site.Params.avatar|absURL))) }}
+		{{ $directory := replaceRE "^(.*)/[^/]+$" "$1" .Site.Params.avatar }}
+		{{ $basename := replaceRE "^.*/([^./]+).*$" "$1" .Site.Params.avatar }}
+		{{ $extension := replaceRE "^.*/[^.]+\\.([^.]+)$" "$1" .Site.Params.avatar }}
+		{{ range (readDir (printf "static/%s" $directory)) }}
+			{{ if findRE (printf "^%s-\\d+x\\.%s$" $basename $extension) .Name }}
+				{{ $.Scratch.Add "srcset" (slice (replaceRE (printf "^(%s)-(\\d+x)\\.(%s)$" $basename $extension) (printf "%s/$1-$2.$3 $2" ($directory|absURL)) .Name)) }}
+			{{ end }}
+		{{ end }}
+		{{ $srcset := delimit ($.Scratch.Get "srcset") "," }}
+		<a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><img class="avatar" src="/{{ .Site.Params.avatar }}" {{ printf "srcset=%q" $srcset | safeHTMLAttr }}></a>
+	{{ end }}
+	<a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><div class="name">{{ .Site.Params.author }}</div></a>
+	{{ if .Site.Params.selfintro }}
+		<h3 class="self-intro">{{ .Site.Params.selfintro }}</h3>
+	{{ end }}
+	<div class="site-description">
+		{{- if isset .Site.Params "subtitle" -}}
+		<h2>{{ .Site.Params.Subtitle | markdownify }}</h2>
+		{{- end -}}
+		<nav class="nav social">
+			<ul class="flat">
+				{{- range $index, $key := .Site.Params.Social -}}
+				<a href="{{ $key.url }}" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
+				{{- end -}}
+			</ul>
+		</nav>
+	</div>
+	
+	<nav class="nav">
+		<ul class="flat">
+			{{ range .Site.Menus.main }}
+			<li>
+				<a href="{{ .URL }}">{{ .Name }}</a>
+			</li>
+			{{ end }}
+		</ul>
+	</nav>
+
+	
+</div>
+</div>
