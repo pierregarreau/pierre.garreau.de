@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Blog bazar of a frenchy</title>
-    <link>https://pierregarreau.github.io/blog/</link>
+    <link>https://pierre.garreau.de/blog/</link>
     <description>Recent content in Blog on Blog bazar of a frenchy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Jul 2016 13:42:16 +0200</lastBuildDate>
     
-	<atom:link href="https://pierregarreau.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pierre.garreau.de/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>On culture, and working remote at Searoutes.</title>
-      <link>https://pierregarreau.github.io/blog/on-remote/</link>
+      <link>https://pierre.garreau.de/blog/on-remote/</link>
       <pubDate>Wed, 22 Apr 2020 19:40:58 +0200</pubDate>
       
-      <guid>https://pierregarreau.github.io/blog/on-remote/</guid>
+      <guid>https://pierre.garreau.de/blog/on-remote/</guid>
       <description>.links { stroke: #000; stroke-opacity: 0.2; } .polygons { fill: none; stroke: #000; } .polygons :first-child { fill: #f00; } .sites { fill: #000; stroke: #fff; } .sites :first-child { fill: #fff; } .voronoi-holder { justify-content: center; } .img-center { width: 60%%; } .column { float: left; width: 50%; } .row { display: flex; margin: 25px; }     (Above, credits from this github using d3 to render Voronoi tesselations in SVG).</description>
     </item>
     
     <item>
       <title>A collaboration model for startups and the Maritime Industry.</title>
-      <link>https://pierregarreau.github.io/blog/startups-and-corporates/</link>
+      <link>https://pierre.garreau.de/blog/startups-and-corporates/</link>
       <pubDate>Wed, 25 Apr 2018 08:46:38 +0200</pubDate>
       
-      <guid>https://pierregarreau.github.io/blog/startups-and-corporates/</guid>
+      <guid>https://pierre.garreau.de/blog/startups-and-corporates/</guid>
       <description>A group of industry representatives from the Maritime Industry met last week to discuss models of collaboration with startups. The event was called Smart Transformation Hamburg. I heard at that event too many instances of the same buzz words: innovation, digitization, agile, blockchain, machine learning from both side of the wall, corporates and startups alike. In the end, both want a well designed product that customers love, build it rapidly, and for a moderate development cost.</description>
     </item>
     
     <item>
       <title>Why should you build your own Neural Networks library?</title>
-      <link>https://pierregarreau.github.io/blog/nn-datastructure/</link>
+      <link>https://pierre.garreau.de/blog/nn-datastructure/</link>
       <pubDate>Fri, 13 Apr 2018 13:10:09 +0100</pubDate>
       
-      <guid>https://pierregarreau.github.io/blog/nn-datastructure/</guid>
+      <guid>https://pierre.garreau.de/blog/nn-datastructure/</guid>
       <description>I have had this conversation with new hires about the benefits of following an online class on Machine Learning, such as the one offered by Coursera. It is rather astonishing to see how fast one can take the concepts from these classes - from Coursera, Udacity, Stanford or MIT - and apply them to real world problems. The recent addition of the course on Applied AI to the Coursera catalogue is another example of this ever growing supply of good online AI courses.</description>
     </item>
     
     <item>
       <title>Reflections on the role of Certainly Trusted Orangutan (CTO)</title>
-      <link>https://pierregarreau.github.io/blog/chief-orangoutan/</link>
+      <link>https://pierre.garreau.de/blog/chief-orangoutan/</link>
       <pubDate>Wed, 13 Dec 2017 09:44:05 +0100</pubDate>
       
-      <guid>https://pierregarreau.github.io/blog/chief-orangoutan/</guid>
+      <guid>https://pierre.garreau.de/blog/chief-orangoutan/</guid>
       <description>Following the closing of a successful series A, the arrival of new management causes a departure rate of 65%, from both tech and product. Sounds familiar ? One of many stories the startup world offers! Now, high turnover rates in early stage companies are common. However, when too many fingers point to the newly appointed Chief Technology Officer, or CTO, it begs the question - why ? After all, what makes a good CTO to start with ?</description>
     </item>
     
     <item>
       <title>Why FFT matters to undergraduates?</title>
-      <link>https://pierregarreau.github.io/blog/processing/</link>
+      <link>https://pierre.garreau.de/blog/processing/</link>
       <pubDate>Tue, 14 Nov 2017 20:42:14 +0100</pubDate>
       
-      <guid>https://pierregarreau.github.io/blog/processing/</guid>
+      <guid>https://pierre.garreau.de/blog/processing/</guid>
       <description>Above: Live graphics created for a music set at Pimp the Chateau, France, December 2009. Click anywhere on the page to pause / play. Music Maison Kitsune.
 Introduction In my third year of grad school, I decided to gather up all the good people I had met so far. A close group of friends and I brainstormed ideas about what would make an event special.</description>
     </item>

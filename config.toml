@@ -1,5 +1,4 @@
-# baseurl       = "https://pierregarreau.github.io/"
-baseurl       = "https://dazzling-galileo-470027.netlify.app/"
+baseurl       = "https://pierre.garreau.de"
 languageCode  = "en-us"
 contentdir    = "content"
 layoutdir     = "layouts"

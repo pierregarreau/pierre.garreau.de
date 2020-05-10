@@ -3,7 +3,7 @@ title: "On culture, and working remote at Searoutes."
 date: 2020-04-22T19:40:58+02:00
 draft: false
 isProcessing: false
-description: ""
+description: "You can leverage the SHAG toolkit as well."
 tags: [ "Start-ups", "Tech" ]
 ---
 
@@ -24,7 +24,7 @@ From its infancy, the company was set up remote. By *remote* I mean *not colocat
 
 This pushed forward strong *trust & transparency values* from day one, inspired originally from [Ray Dalio's *The Principles*](https://www.principles.com/). While we may not be *radically* transparent, everything we do at Searoutes is accessible to others. For remote to work, every team member had to be able to see how everyone else contributes to the company goals. Transparency was key.
 
-Once trust was established, the impact of what we had just done became clear when I noticed we all had a different routing in place. In fact, we all know what works best for ourselves! We all know how to best get into the flow: music, a quiet space, the coffee shop, the library, doing sports before or a healthy skake.
+Once trust was established, the impact of what we had just done became clear when I noticed we all had a different routing in place. In fact, we all know what works best for ourselves! We all know how to best get into the flow: music, a quiet space, the coffee shop, the library, doing sports before or a healthy shake.
 
 **:muscle: Empowered first.** You cannot build a remote culture if you are imposing that your team be online from 9 to 5. This would be the digital equivalent of *managing chairs*, i.e. checking on everyone's clock. For our remote culture to strive and grow, we had to borrow from the *distributed* principles. By *distributed* I mean *not always online together*. Most of us are used to working that way already, with our accountant, lawyer, doctor. It means that we work together but asynchronously.
 
