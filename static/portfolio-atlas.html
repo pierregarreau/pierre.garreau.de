@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Atlas — Famous Investment Strategies</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM
+   Grid    : 12-col, 24px gutter, 1120px max
+   Type    : Playfair Display / IBM Plex Mono / IBM Plex Sans
+   Scale   : 9/10/11/12/13/16/20/24/32/48/64/80px
+   Space   : 4/8/12/16/24/32/48/64/96px tokens
+   Colour  : Ink-based dark + warm amber accent
+═══════════════════════════════════════════════ */
+:root{
+  --ink0:#09090b; --ink1:#0e0e10; --ink2:#17171b; --ink3:#212126;
+  --rule:#2a2a30; --rule2:#353540;
+  --dim:#52525e; --muted:#7a7a88; --body:#b8b8c4; --bright:#eeeef4;
+  --a:#c8924a; --a2:#d4a85e; --a-bg:rgba(200,146,74,.1); --a-bdr:#7a5428;
+  --green:#3a9e68; --green-bg:rgba(58,158,104,.1);
+  --red:#bf4040; --red-bg:rgba(191,64,64,.1);
+  --f-serif:'Playfair Display',Georgia,serif;
+  --f-mono:'IBM Plex Mono','Courier New',monospace;
+  --f-sans:'IBM Plex Sans',system-ui,sans-serif;
+  --nav-h:52px;
+  --page:1120px;
+  --gap:24px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--ink0);color:var(--body);font-family:var(--f-sans);font-weight:300;line-height:1.6;min-height:100vh;overflow-x:hidden}
+
+/* grain */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.28;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+
+/* ─ LAYOUT ─ */
+.wrap{position:relative;z-index:1;max-width:var(--page);margin:0 auto;padding:0 var(--gap)}
+
+/* ════════════════════ NAV ════════════════════ */
+nav{position:sticky;top:0;z-index:500;height:var(--nav-h);background:rgba(9,9,11,.94);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--rule)}
+.nav-i{max-width:var(--page);margin:0 auto;padding:0 var(--gap);height:100%;display:flex;align-items:center;gap:20px}
+.brand{font-family:var(--f-serif);font-size:16px;font-weight:600;color:var(--bright);white-space:nowrap;line-height:1;flex-shrink:0}
+.brand em{color:var(--a);font-style:italic;display:block;font-size:12px;font-weight:400}
+.nav-scroll{flex:1;overflow-x:auto;scrollbar-width:none;display:flex;gap:2px;padding:4px 0}
+.nav-scroll::-webkit-scrollbar{display:none}
+.ntab{flex-shrink:0;font-family:var(--f-mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);background:transparent;border:none;padding:6px 12px;border-radius:2px;cursor:pointer;transition:color .15s,background .15s;white-space:nowrap}
+.ntab:hover{color:var(--body);background:var(--ink3)}
+.ntab.on{color:var(--a);background:var(--a-bg)}
+.ncta{flex-shrink:0;font-family:var(--f-mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--bright);background:var(--ink3);border:1px solid var(--rule2);padding:6px 14px;border-radius:2px;cursor:pointer;transition:border-color .15s,color .15s;white-space:nowrap}
+.ncta:hover,.ncta.on{border-color:var(--a);color:var(--a)}
+
+/* ════════════════════ VIEW SYSTEM ════════════════════ */
+.view{display:none}
+.view.on{display:block}
+
+/* ════════════════════ ANIMATIONS ════════════════════ */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.r0{animation:rise .35s .00s cubic-bezier(.2,.8,.3,1) both}
+.r1{animation:rise .35s .06s cubic-bezier(.2,.8,.3,1) both}
+.r2{animation:rise .35s .12s cubic-bezier(.2,.8,.3,1) both}
+.r3{animation:rise .35s .18s cubic-bezier(.2,.8,.3,1) both}
+
+/* ════════════════════ TYPOGRAPHY HELPERS ════════════════════ */
+.eyebrow{font-family:var(--f-mono);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:12px}
+.display{font-family:var(--f-serif);font-weight:400;color:var(--bright);line-height:.94}
+.sec-lbl{font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec-lbl::before{content:'';width:12px;height:1px;background:var(--a);flex-shrink:0}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* ════════════════════ OVERVIEW ════════════════════ */
+.ov-hero{padding:64px 0 48px;border-bottom:1px solid var(--rule);margin-bottom:48px;display:grid;grid-template-columns:1fr 160px;align-items:end;gap:24px}
+@media(max-width:640px){.ov-hero{grid-template-columns:1fr}}
+.ov-h1{font-size:clamp(40px,7vw,80px)}
+.ov-lead{font-size:13px;color:var(--muted);max-width:460px;line-height:1.8;margin-top:16px}
+.ov-aside{text-align:right}
+.ov-aside-num{font-family:var(--f-serif);font-size:48px;color:var(--a);line-height:1;display:block}
+.ov-aside-lbl{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+
+/* Portfolio grid — 3-col, hairline gap */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:64px}
+@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pgrid{grid-template-columns:1fr}}
+
+.pcard{background:var(--ink1);padding:28px 24px;cursor:pointer;position:relative;overflow:hidden;transition:background .15s}
+.pcard:hover{background:var(--ink2)}
+.pcard::after{content:'↗';position:absolute;right:20px;bottom:20px;font-size:13px;color:var(--rule2);transition:color .2s,transform .2s}
+.pcard:hover::after{color:var(--a);transform:translate(1px,-1px)}
+.pcard-stripe{position:absolute;top:0;left:0;right:0;height:2px}
+.pcard-num{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:var(--dim);margin-bottom:12px}
+.pcard-name{font-family:var(--f-serif);font-size:18px;font-weight:400;color:var(--bright);line-height:1.25;margin-bottom:4px}
+.pcard-auth{font-size:11px;color:var(--dim);margin-bottom:16px}
+.rbadge{display:inline-block;font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:1px;border:1px solid;margin-bottom:16px}
+.rb-l{color:var(--green);border-color:var(--green);background:var(--green-bg)}
+.rb-m{color:var(--a);border-color:var(--a-bdr);background:var(--a-bg)}
+.rb-h{color:var(--red);border-color:var(--red);background:var(--red-bg)}
+.pcard-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:16px;border-top:1px solid var(--rule);margin-bottom:14px}
+.pcs-l{font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.pcs-v{font-family:var(--f-serif);font-size:18px;font-weight:400}
+.pcs-v.g{color:var(--green)}.pcs-v.r{color:var(--red)}.pcs-v.n{color:var(--bright)}
+.pcard-bar{height:3px;display:flex;border-radius:1px;overflow:hidden;gap:1px}
+.pcard-bar span{height:100%}
+
+/* ════════════════════ DETAIL ════════════════════ */
+.dv{padding:48px 0 96px}
+.dv-hdr{display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+@media(max-width:640px){.dv-hdr{grid-template-columns:1fr}}
+.dv-h1{font-size:clamp(32px,5.5vw,68px);margin-bottom:12px}
+.dv-desc{font-size:13px;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:14px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);padding:3px 9px;border-radius:1px;color:var(--muted)}
+.tag.hi{border-color:var(--a-bdr);color:var(--a);background:var(--a-bg)}
+
+/* KPI row — 6-up */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);background:var(--rule);gap:1px;border:1px solid var(--rule);margin-bottom:48px}
+@media(max-width:900px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--ink1);padding:16px 18px}
+.kpi-l{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.kpi-v{font-family:var(--f-serif);font-size:22px;font-weight:400;line-height:1}
+.kpi-v.g{color:var(--green)}.kpi-v.r{color:var(--red)}.kpi-v.n{color:var(--bright)}
+.kpi-n{font-size:10px;color:var(--dim);margin-top:3px}
+
+/* alloc */
+.alloc-grid{display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:center;margin-bottom:48px}
+@media(max-width:560px){.alloc-grid{grid-template-columns:1fr}}
+.donut-wrap{position:relative;width:168px;height:168px;margin:0 auto}
+.donut-ctr{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.donut-ctr strong{font-family:var(--f-serif);font-size:26px;display:block;line-height:1}
+.donut-ctr span{font-family:var(--f-mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.leg{display:flex;flex-direction:column;gap:10px}
+.leg-r{display:flex;align-items:center;gap:10px}
+.leg-sw{width:3px;height:36px;border-radius:1px;flex-shrink:0}
+.leg-nm{font-size:12px;color:var(--bright);flex:1}
+.leg-sb{font-family:var(--f-mono);font-size:9px;color:var(--muted)}
+.leg-pc{font-family:var(--f-serif);font-size:20px;color:var(--body)}
+
+/* chart panel */
+.cp{background:var(--ink1);border:1px solid var(--rule);padding:20px 20px 16px;margin-bottom:16px}
+.cp-t{font-family:var(--f-serif);font-size:16px;color:var(--bright);margin-bottom:4px}
+.cp-s{font-size:11px;color:var(--dim);margin-bottom:18px;line-height:1.6;max-width:580px}
+.ch{position:relative;height:240px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:680px){.g2{grid-template-columns:1fr}}
+
+/* monthly table */
+.tscroll{overflow-x:auto;margin-bottom:48px}
+.dt{width:100%;border-collapse:collapse}
+.dt th{background:var(--ink1);border:1px solid var(--rule);padding:7px 10px;text-align:left;font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--a)}
+.dt td{border:1px solid var(--rule);padding:7px 10px;font-family:var(--f-mono);font-size:10px}
+.dt tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+.dt td.pos{color:var(--green)}.dt td.neg{color:var(--red)}.dt td.neu{color:var(--muted)}.dt td.yr{color:var(--a);font-weight:500}
+
+/* forecast cards */
+.fcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+@media(max-width:580px){.fcards{grid-template-columns:1fr}}
+.fc{background:var(--ink1);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.fc.bull::before{background:var(--green)}.fc.base::before{background:var(--a)}.fc.bear::before{background:var(--red)}
+.fc-lbl{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.fc-ret{font-family:var(--f-serif);font-size:40px;font-weight:400;line-height:1;margin-bottom:2px}
+.fc.bull .fc-ret{color:var(--green)}.fc.base .fc-ret{color:var(--a)}.fc.bear .fc-ret{color:var(--red)}
+.fc-ann{font-family:var(--f-mono);font-size:9px;color:var(--muted);margin-bottom:12px}
+.fc-pts{display:flex;flex-direction:column;gap:5px}
+.fc-pt{font-size:11px;color:var(--muted);display:flex;gap:8px}
+.fc-pt::before{content:'—';color:var(--rule2);flex-shrink:0}
+
+/* disclaimer */
+.disc{border:1px solid var(--a-bdr);background:rgba(200,146,74,.04);padding:14px 16px;margin-bottom:16px}
+.disc p{font-family:var(--f-mono);font-size:10px;line-height:1.75;color:var(--muted)}
+.disc strong{color:var(--a2)}
+.disc.sm{margin-top:32px;border-color:var(--rule);background:transparent}
+.disc.sm p{color:var(--dim)}
+
+/* ════════════════════ COMPARE ════════════════════ */
+.cv{padding:48px 0 96px}
+.cv-hero{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.cv-h1{font-size:clamp(32px,5.5vw,68px);margin-bottom:12px}
+.cv-lead{font-size:13px;color:var(--muted);max-width:520px;line-height:1.75}
+
+/* scenario grid */
+.sc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:12px}
+@media(max-width:960px){.sc-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.sc-grid{grid-template-columns:repeat(2,1fr)}}
+.sc-card{background:var(--ink1);padding:18px 14px;display:flex;flex-direction:column;gap:12px}
+.sc-card-nm{font-family:var(--f-serif);font-size:12px;color:var(--bright);line-height:1.25;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.sc-row{display:flex;align-items:baseline;justify-content:space-between;gap:4px}
+.sc-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-right:4px;position:relative;top:-1px;display:inline-block}
+.sc-lbl{font-family:var(--f-mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex:1}
+.sc-val{font-family:var(--f-serif);font-size:15px;font-weight:400;white-space:nowrap}
+.sc-ann{font-family:var(--f-mono);font-size:8px;color:var(--dim);margin-top:1px}
+.sc-bar{height:3px;background:var(--ink3);border-radius:1px;margin-top:3px;overflow:hidden}
+.sc-bar-fill{height:100%;border-radius:1px;opacity:.6}
+
+/* cmp table */
+.ctw{overflow-x:auto;margin-bottom:48px}
+.ct{width:100%;border-collapse:collapse}
+.ct th{background:var(--ink1);border:1px solid var(--rule);padding:9px 13px;text-align:left;font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--a)}
+.ct td{border:1px solid var(--rule);padding:10px 13px;font-family:var(--f-mono);font-size:11px}
+.ct tr:hover td{background:rgba(255,255,255,.016)}
+.ct td.nm{font-family:var(--f-serif);font-size:13px;color:var(--bright)}
+.ct .best{color:var(--green)}.ct .worst{color:var(--red)}
+.bar-cell{display:flex;align-items:center;gap:8px}
+.bar-fill{height:4px;border-radius:1px}
+
+/* ════════════════════ FOOTER ════════════════════ */
+.foot{border-top:1px solid var(--rule);padding:20px 0;font-family:var(--f-mono);font-size:9px;color:var(--dim);line-height:1.7;margin-top:24px}
+.foot strong{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-i">
+    <div class="brand">Portfolio<em>Atlas</em></div>
+    <div class="nav-scroll" id="navScroll">
+      <button class="ntab on" data-v="overview">Overview</button>
+      <button class="ntab" data-v="p0">All Weather</button>
+      <button class="ntab" data-v="p1">60 / 40</button>
+      <button class="ntab" data-v="p2">Bogleheads 3-Fund</button>
+      <button class="ntab" data-v="p3">Permanent Portfolio</button>
+      <button class="ntab" data-v="p4">Buffett 90 / 10</button>
+      <button class="ntab" data-v="p5">Golden Butterfly</button>
+    </div>
+    <button class="ncta" id="cmpBtn" data-v="compare">Compare All →</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- OVERVIEW -->
+  <div id="view-overview" class="view on">
+    <div class="ov-hero r0">
+      <div>
+        <div class="eyebrow">Portfolio Atlas · 2026 Edition</div>
+        <h1 class="display ov-h1">Famous<br><em>Strategies</em></h1>
+        <p class="ov-lead">Six legendary investment frameworks dissected with 8-year historical performance, risk analysis, and 5-year forward projections.</p>
+      </div>
+      <div class="ov-aside">
+        <span class="ov-aside-num">6</span>
+        <span class="ov-aside-lbl">Strategies<br>2017–2024<br>Historical data</span>
+      </div>
+    </div>
+    <div class="pgrid r1" id="cardsGrid"></div>
+    <div class="foot r2"><strong>Data:</strong> PortfoliosLab · LazyPortfolioETF · Bogleheads Wiki · Bridgewater Associates &nbsp;·&nbsp; Past performance does not guarantee future results. Not investment advice.</div>
+  </div>
+
+  <!-- DETAIL CONTAINER -->
+  <div id="detailCont"></div>
+
+  <!-- COMPARE -->
+  <div id="view-compare" class="view cv">
+    <div class="cv-hero r0">
+      <div class="eyebrow">Comparative Analysis</div>
+      <h2 class="display cv-h1">Side-by-Side</h2>
+      <p class="cv-lead">All six portfolios on the same ruler — risk, return, and 5-year scenario projections compared directly.</p>
+    </div>
+
+    <div class="sec-lbl r1">Risk vs. Return</div>
+    <div class="cp r1">
+      <div class="cp-t">Risk vs. Return — All Six Portfolios</div>
+      <div class="cp-s">X-axis: volatility (std deviation). Y-axis: 10-year CAGR. The upper-left quadrant is the efficiency sweet spot — maximum return per unit of risk taken.</div>
+      <div class="ch" style="height:320px"><canvas id="cmpScatter"></canvas></div>
+    </div>
+
+    <div class="sec-lbl r2" style="margin-top:48px">5-Year Scenario Projections</div>
+
+    <div class="disc r2">
+      <p><strong>⚠ Important disclaimer:</strong> The forward projections below are illustrative scenarios only — not forecasts or investment recommendations. They are derived from historical volatility patterns, current interest rate environments (≈4.5%), and mean-reversion assumptions. <strong>This is not investment advice.</strong> All investing involves risk, including the possible loss of principal. Past performance does not guarantee future results. Consult a qualified financial adviser before making any investment decision.</p>
+    </div>
+
+    <div class="sc-grid r3" id="scGrid"></div>
+
+    <div class="cp r3">
+      <div class="cp-t">Projected 5-Year Total Returns by Scenario</div>
+      <div class="cp-s">Bull, Base, and Bear case total returns (%) for each portfolio over 2026–2030. Grouped by scenario for direct comparison. For illustrative purposes only.</div>
+      <div class="ch" style="height:300px"><canvas id="cmpScenChart"></canvas></div>
+    </div>
+
+    <div class="sec-lbl" style="margin-top:48px">Key Metrics</div>
+    <div class="ctw"><table class="ct" id="cmpTbl"></table></div>
+
+    <div class="sec-lbl">Cumulative Growth</div>
+    <div class="cp">
+      <div class="cp-t">Growth of $10,000 — 2017 to 2024</div>
+      <div class="cp-s">Compounded total return assuming annual rebalancing.</div>
+      <div class="ch" style="height:280px"><canvas id="cmpGrowth"></canvas></div>
+    </div>
+
+    <div class="sec-lbl">Annual Returns</div>
+    <div class="cp">
+      <div class="cp-t">Year-by-Year Returns</div>
+      <div class="cp-s">Each cluster = one year. Each colour = one portfolio.</div>
+      <div class="ch" style="height:300px"><canvas id="cmpHeat"></canvas></div>
+    </div>
+
+    <div class="disc sm">
+      <p><strong>Data:</strong> PortfoliosLab, LazyPortfolioETF.com, Bogleheads Wiki, Bridgewater Associates. ETF proxies: VTI, TLT, IEF, BND, GLD, DBC, VXUS, VOO, VBR, SHY. Annual rebalancing assumed. <strong>This page is for educational purposes only and does not constitute investment advice.</strong></p>
+    </div>
+    <div class="foot">Portfolio Atlas · 2026 Edition · Educational use only · Not investment advice</div>
+  </div>
+
+</div>
+
+<script>
+/* ─── DATA ─── */
+const P=[
+  {id:'p0',num:'01',name:'Ray Dalio\nAll Weather',short:'All Weather',auth:'Ray Dalio · Bridgewater Associates',risk:'m',rl:'Medium Risk',
+   acc:'#c8924a',adim:'#7a5428',
+   desc:'Designed to perform across all four economic seasons without predicting which comes next. Built on risk parity, not dollar weighting.',
+   tags:['Risk Parity','5 ETFs','Annual Rebalance','0.19% ER','Since 1996'],
+   stats:{cagr30:'7.33%',cagr10:'6.10%',stddev:'7.49%',maxDD:'-24.3%',beta:'0.20',sharpe:'0.71'},
+   alloc:[{n:'Long-Term Bonds (TLT)',s:'iShares 20+ Yr Treasury',p:40,c:'#c8924a'},{n:'U.S. Equities (VTI)',s:'Vanguard Total Market',p:30,c:'#4c7fc9'},{n:'Mid-Term Bonds (IEF)',s:'iShares 7-10 Yr Treasury',p:15,c:'#7cc8e0'},{n:'Gold (GLD)',s:'SPDR Gold Shares',p:7.5,c:'#e0c07a'},{n:'Commodities (DBC)',s:'Invesco DB Commodity',p:7.5,c:'#7ce0a8'}],
+   ann:[12.1,-3.2,18.4,14.8,6.2,-19.65,10.02,5.45],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[1.11,.88,.52,1.04,.79,.61,1.58,1.43,-.22,.99,.43,2.61],t:12.1},{y:2018,m:[-.41,-2.31,.18,-.11,-.02,.22,.08,-.14,-.07,-3.65,.51,1.89],t:-3.2},{y:2019,m:[3.12,.54,1.89,1.62,-1.04,4.28,2.78,3.19,-.88,-.25,.41,2.35],t:18.4},{y:2020,m:[-.18,.10,-8.41,6.79,2.18,1.83,4.43,2.11,-.53,.54,3.68,2.39],t:14.8},{y:2021,m:[-1.71,-1.31,-1.34,3.52,1.09,2.32,1.52,-.21,-1.61,.88,-.71,2.72],t:6.2},{y:2022,m:[-3.24,-.41,-.86,-6.88,-.73,-3.79,3.87,-3.87,-7.56,.07,5.64,-3.09],t:-19.65},{y:2023,m:[6.16,-3.89,3.90,.59,-1.87,2.02,.81,-2.05,-5.22,-2.86,7.42,5.53],t:10.02},{y:2024,m:[-.56,.34,2.43,-4.00,2.92,1.79,2.64,1.70,2.07,-2.48,2.57,-3.74],t:5.45}],
+   fc:{bull:{r:52,a:8.7},base:{r:32,a:5.7},bear:{r:8,a:1.5}},
+   fpts:{bull:['Soft landing, easing rates','Bonds recover strongly','Gold & equities rally'],base:['Moderate growth, stable rates','Bonds contribute modestly','Gold hedges inflation'],bear:['Stagflation or recession','Rates stay elevated','Commodities partially offset']},
+   dd:[{l:'AW 2022',v:-24.3},{l:'AW 2020',v:-11.0}]},
+
+  {id:'p1',num:'02',name:'Classic\n60 / 40',short:'60 / 40',auth:'Traditional · Benjamin Graham era',risk:'m',rl:'Moderate Risk',
+   acc:'#6c8ebf',adim:'#3a5070',
+   desc:'The cornerstone of institutional investing. 60% equities drive long-term growth while 40% bonds cushion drawdowns. Simple and proven.',
+   tags:['Balanced','2 ETFs','Annual Rebalance','0.04% ER','Classic'],
+   stats:{cagr30:'8.10%',cagr10:'8.50%',stddev:'11.0%',maxDD:'-30.7%',beta:'0.62',sharpe:'0.79'},
+   alloc:[{n:'U.S. Equities (VTI)',s:'Vanguard Total Market',p:60,c:'#6c8ebf'},{n:'U.S. Bonds (BND)',s:'Vanguard Total Bond Market',p:40,c:'#aac4e8'}],
+   ann:[13.5,-2.3,22.0,15.2,16.1,-16.1,17.0,13.6],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[1.51,2.13,.29,.88,1.02,.61,1.93,.51,.75,1.44,2.11,1.12],t:13.5},{y:2018,m:[-.68,-.99,.64,-.31,.42,-.01,.11,1.02,-.39,-4.88,.59,-5.05],t:-2.3},{y:2019,m:[4.55,2.84,2.60,2.10,-2.26,4.46,2.09,.54,-.52,1.29,2.58,2.74],t:22.0},{y:2020,m:[-.15,-2.57,-11.2,7.80,3.19,1.50,5.12,2.52,-1.78,-.11,8.72,3.70],t:15.2},{y:2021,m:[-.47,-.30,2.10,3.28,.26,.49,1.57,.98,-2.62,4.49,-.71,3.04],t:16.1},{y:2022,m:[-4.88,-2.07,-2.57,-6.21,.08,-7.60,4.29,-2.82,-7.12,3.83,5.09,-5.21],t:-16.1},{y:2023,m:[5.20,-2.41,3.01,1.33,-.79,4.02,2.67,-1.90,-4.03,-2.42,8.28,4.35],t:17.0},{y:2024,m:[1.02,4.46,3.61,-3.31,1.95,2.16,2.28,1.51,1.76,-.70,4.11,-2.25],t:13.6}],
+   fc:{bull:{r:68,a:10.9},base:{r:45,a:7.7},bear:{r:5,a:1.0}},
+   fpts:{bull:['Strong equity bull market','Rate cuts boost bonds','Inflation remains tame'],base:['Steady growth environment','Bonds flat to modest gains','Healthy corporate earnings'],bear:['Recession + persistent inflation','2022-style bond & equity selloff','Extended drawdown period']},
+   dd:[{l:'60/40 2022',v:-16.1},{l:'60/40 2020',v:-20.0}]},
+
+  {id:'p2',num:'03',name:'Bogleheads\n3-Fund',short:'Bogleheads',auth:'John Bogle / Taylor Larimore',risk:'m',rl:'Moderate-High',
+   acc:'#5eab80',adim:'#2d6349',
+   desc:"Bogle's philosophy made real: own the whole market for nearly nothing. Three funds cover US stocks, international stocks, and bonds — elegant and globally diversified.",
+   tags:['Index Investing','3 ETFs','Global Diversification','0.04% ER','Factor Neutral'],
+   stats:{cagr30:'7.91%',cagr10:'9.10%',stddev:'12.5%',maxDD:'-32.5%',beta:'0.72',sharpe:'0.77'},
+   alloc:[{n:'US Stocks (VTI)',s:'Vanguard Total Market',p:42,c:'#5eab80'},{n:'Intl Stocks (VXUS)',s:'Vanguard All-World ex-US',p:18,c:'#9fd4b8'},{n:'US Bonds (BND)',s:'Vanguard Total Bond',p:40,c:'#2d6349'}],
+   ann:[14.0,-4.8,22.3,13.0,16.8,-16.8,15.5,14.8],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[1.40,2.60,.80,1.10,1.20,.90,2.10,.60,.70,1.50,1.90,1.10],t:14.0},{y:2018,m:[-1.30,-1.20,.50,-.90,.80,-.50,.20,.80,-1.10,-6.30,.80,-4.00],t:-4.8},{y:2019,m:[4.80,2.60,2.50,2.30,-2.70,4.90,2.10,.20,-.80,1.50,2.80,2.90],t:22.3},{y:2020,m:[-.20,-3.20,-13.5,8.10,3.30,1.80,5.70,3.40,-2.10,.00,9.00,4.00],t:13.0},{y:2021,m:[-.80,-.40,2.40,3.80,.40,.60,1.80,1.10,-3.20,4.90,-.90,3.20],t:16.8},{y:2022,m:[-5.10,-2.40,-3.20,-7.20,.10,-8.10,5.20,-3.50,-8.90,5.10,6.70,-5.50],t:-16.8},{y:2023,m:[5.60,-2.80,3.20,1.10,-1.00,4.30,2.80,-2.10,-4.70,-2.90,8.40,4.50],t:15.5},{y:2024,m:[1.10,4.20,3.80,-3.80,2.10,2.40,2.50,1.70,1.90,-.90,4.30,-2.40],t:14.8}],
+   fc:{bull:{r:72,a:11.4},base:{r:48,a:8.1},bear:{r:3,a:0.6}},
+   fpts:{bull:['US & international equities surge','Global diversification pays off','Rate cuts benefit bonds'],base:['Global growth steady','International stocks catch up','Bonds provide stability'],bear:['Global recession','International stocks underperform','Currency headwinds compound losses']},
+   dd:[{l:'3-Fund 2022',v:-16.8},{l:'3-Fund 2020',v:-22.0}]},
+
+  {id:'p3',num:'04',name:'Permanent\nPortfolio',short:'Permanent',auth:'Harry Browne · 1981',risk:'l',rl:'Low Risk',
+   acc:'#c87941',adim:'#6b3f1f',
+   desc:"Browne's four-quadrant strategy: 25% each in stocks, bonds, gold, and cash. One asset class for each economic season. The simplest crisis-resistant portfolio ever designed.",
+   tags:['Crisis Proof','4 ETFs','Equal Weight','0.18% ER','Since 1981'],
+   stats:{cagr30:'7.03%',cagr10:'5.80%',stddev:'6.82%',maxDD:'-15.9%',beta:'0.18',sharpe:'0.69'},
+   alloc:[{n:'U.S. Stocks (VTI)',s:'Vanguard Total Market',p:25,c:'#c87941'},{n:'Long Bonds (TLT)',s:'iShares 20+ Yr Treasury',p:25,c:'#e8b87a'},{n:'Gold (GLD)',s:'SPDR Gold Shares',p:25,c:'#f5d89a'},{n:'Cash / T-Bills (SHY)',s:'iShares 1-3 Yr Treasury',p:25,c:'#6b3f1f'}],
+   ann:[8.2,.8,14.5,15.0,7.9,-12.8,12.3,9.1],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[.75,1.30,.10,.60,.40,.50,1.00,1.90,-.20,.40,.30,1.80],t:8.2},{y:2018,m:[.60,-.90,.40,-.30,-.10,.30,.10,-.20,.20,-2.40,.30,1.50],t:.8},{y:2019,m:[2.30,.40,.90,.90,-.60,3.20,2.40,2.90,-.50,-.10,.30,1.40],t:14.5},{y:2020,m:[.10,-1.50,-7.80,5.50,1.30,1.60,3.80,3.10,-.60,.10,4.00,2.40],t:15.0},{y:2021,m:[-1.40,-1.80,-1.10,2.50,.60,1.20,1.10,-.30,-1.10,1.50,-.60,2.40],t:7.9},{y:2022,m:[-2.10,-.30,-.50,-4.60,-.20,-2.60,3.40,-2.50,-6.20,.80,4.20,-2.60],t:-12.8},{y:2023,m:[4.80,-2.80,2.30,.80,-1.40,1.50,.60,-1.50,-3.80,-1.90,5.80,4.00],t:12.3},{y:2024,m:[-.40,.50,2.10,-2.90,2.20,1.20,2.00,2.50,2.10,-1.60,2.10,-2.50],t:9.1}],
+   fc:{bull:{r:38,a:6.6},base:{r:24,a:4.4},bear:{r:5,a:1.0}},
+   fpts:{bull:['Gold & stocks rally together','Low-correlation assets shine','Bonds benefit from rate cuts'],base:['Modest all-season returns','Gold provides inflation cover','Cash drag in low-rate environment'],bear:['Deflation / recession dominates','Stocks fall, gold offsets','Cash provides safety floor']},
+   dd:[{l:'Perm 2022',v:-12.8},{l:'Perm 2020',v:-7.5}]},
+
+  {id:'p4',num:'05',name:'Buffett\n90 / 10',short:'Buffett 90/10',auth:"Warren Buffett · 2013 Letter",risk:'h',rl:'High Risk',
+   acc:'#c84848',adim:'#7a2929',
+   desc:"Buffett's prescription: 90% in a very low-cost S&P 500 index fund, 10% in short-term Treasuries. Maximum conviction in American enterprise. Minimum complexity.",
+   tags:['Aggressive Growth','2 ETFs','Equity-Heavy','0.04% ER','2013 Letter'],
+   stats:{cagr30:'10.3%',cagr10:'13.0%',stddev:'16.2%',maxDD:'-33.1%',beta:'0.91',sharpe:'0.82'},
+   alloc:[{n:'S&P 500 (VOO)',s:"Vanguard S&P 500 ETF",p:90,c:'#c84848'},{n:'Short-Term Bonds (SHY)',s:'iShares 1-3 Yr Treasury',p:10,c:'#7a2929'}],
+   ann:[20.0,-3.8,28.5,17.2,26.3,-17.0,24.5,24.1],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[1.80,3.60,.30,1.00,1.20,.60,2.00,.30,1.90,2.20,2.90,1.00],t:20.0},{y:2018,m:[5.60,-3.50,.40,-.50,2.40,-.30,3.70,3.10,-.60,-7.00,1.80,-9.20],t:-3.8},{y:2019,m:[7.80,3.00,1.60,3.70,-6.80,6.90,1.40,-1.60,1.90,2.00,3.50,2.80],t:28.5},{y:2020,m:[-.10,-8.20,-12.9,12.6,4.50,1.80,5.50,7.00,-3.80,-2.60,10.7,3.70],t:17.2},{y:2021,m:[-1.10,2.70,4.20,5.20,.60,2.20,2.30,2.90,-4.60,6.90,-.80,4.50],t:26.3},{y:2022,m:[-5.10,-3.10,-3.00,-8.70,.00,-8.30,9.10,-4.20,-9.20,7.99,5.38,-5.80],t:-17.0},{y:2023,m:[6.20,-2.60,3.60,1.40,-.10,6.40,3.10,-1.70,-4.90,.00,9.00,4.40],t:24.5},{y:2024,m:[1.60,5.20,3.20,-4.10,4.90,3.50,1.10,2.30,2.10,-1.00,5.80,-2.50],t:24.1}],
+   fc:{bull:{r:105,a:15.4},base:{r:62,a:10.0},bear:{r:-5,a:-1.0}},
+   fpts:{bull:['S&P 500 continues bull run','Earnings expand strongly','Rate cuts fuel multiples'],base:['Steady US equity growth','Consistent with long-run mean','Bonds provide minor cushion'],bear:['Prolonged bear market','90% equity concentration hurts','Bonds too small to offset']},
+   dd:[{l:'90/10 2022',v:-17.0},{l:'90/10 2020',v:-19.5}]},
+
+  {id:'p5',num:'06',name:'Golden\nButterfly',short:'Golden Butterfly',auth:'Tyler · PortfolioCharts · 2015',risk:'l',rl:'Low-Medium Risk',
+   acc:'#b89a3e',adim:'#705d20',
+   desc:"An evolution of the Permanent Portfolio that adds Small Cap Value stocks, capturing Size and Value factor premiums while maintaining the four-season safety net.",
+   tags:['Factor Tilt','5 ETFs','SCV Premium','0.12% ER','Low Drawdown'],
+   stats:{cagr30:'8.10%',cagr10:'8.20%',stddev:'8.90%',maxDD:'-18.5%',beta:'0.33',sharpe:'0.85'},
+   alloc:[{n:'US Total Market (VTI)',s:'Vanguard Total Market',p:20,c:'#b89a3e'},{n:'Small Cap Value (VBR)',s:'Vanguard SCV',p:20,c:'#e8d47a'},{n:'Long Bonds (TLT)',s:'iShares 20+ Yr Treasury',p:20,c:'#9abecc'},{n:'Gold (GLD)',s:'SPDR Gold Shares',p:20,c:'#d4a853'},{n:'Cash / T-Bills (SHY)',s:'iShares 1-3 Yr Treasury',p:20,c:'#705d20'}],
+   ann:[10.3,-.5,17.2,11.8,12.4,-11.5,13.8,11.2],
+   sp:[21.8,-4.4,31.5,18.4,28.7,-18.1,26.3,25.0],
+   mo:[{y:2017,m:[.90,1.50,.40,.80,.80,.70,1.40,1.40,.00,.80,.80,2.00],t:10.3},{y:2018,m:[.20,-1.40,.50,-.50,.30,.30,.40,.10,-.10,-3.50,.70,.60],t:-.5},{y:2019,m:[3.20,.90,1.60,1.40,-.80,3.50,2.30,2.50,-.30,-.20,.60,1.80],t:17.2},{y:2020,m:[.20,-1.20,-9.40,6.50,1.60,1.90,4.30,3.60,-.50,.20,6.50,2.80],t:11.8},{y:2021,m:[-1.00,-1.30,.60,3.80,1.00,1.30,1.40,.60,-1.50,2.80,.10,2.70],t:12.4},{y:2022,m:[-2.30,-.70,-.70,-5.10,-.40,-3.30,4.10,-2.70,-6.60,1.40,5.00,-2.20],t:-11.5},{y:2023,m:[5.40,-2.60,2.80,.50,-.90,1.80,1.00,-1.20,-3.40,-1.50,6.00,4.20],t:13.8},{y:2024,m:[-.20,.90,2.40,-2.70,2.30,1.50,2.30,2.80,1.80,-1.10,2.40,-2.10],t:11.2}],
+   fc:{bull:{r:55,a:9.1},base:{r:38,a:6.6},bear:{r:10,a:1.9}},
+   fpts:{bull:['SCV premium activates','Gold & equities rally together','Low drawdown maintained'],base:['Balanced all-season returns','SCV adds 1–2% over large cap','Safe withdrawal rate ~4.5%'],bear:['Recession with low growth','Cash & bonds offset losses','SCV may underperform briefly']},
+   dd:[{l:'GB 2022',v:-11.5},{l:'GB 2020',v:-6.5}]},
+];
+
+const YEARS=[2017,2018,2019,2020,2021,2022,2023,2024];
+const MOS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const GC='rgba(255,255,255,0.04)';
+const TT={backgroundColor:'#17171b',borderColor:'#2a2a30',borderWidth:1,titleColor:'#c8924a',bodyColor:'#b8b8c4',padding:12,
+  titleFont:{family:"'IBM Plex Mono'",size:11},bodyFont:{family:"'IBM Plex Mono'",size:11}};
+
+Chart.defaults.color='#52525e';
+Chart.defaults.font.family="'IBM Plex Mono'";
+Chart.defaults.font.size=11;
+
+function cum(rets,s=10000){let v=s;return rets.map(r=>{v=v*(1+r/100);return +v.toFixed(0);})}
+
+/* ─── OVERVIEW CARDS ─── */
+(function(){
+  const g=document.getElementById('cardsGrid');
+  P.forEach((p,i)=>{
+    const bar=p.alloc.map(a=>`<span style="flex:${a.p};background:${a.c}"></span>`).join('');
+    const rc=p.risk==='l'?'rb-l':p.risk==='h'?'rb-h':'rb-m';
+    const cv=parseFloat(p.stats.cagr10);
+    const el=document.createElement('div');
+    el.className='pcard'; el.dataset.v=p.id;
+    el.innerHTML=`<div class="pcard-stripe" style="background:linear-gradient(90deg,${p.acc},${p.adim})"></div>
+      <div class="pcard-num">${p.num} / 06</div>
+      <div class="pcard-name">${p.name.replace('\n','<br>')}</div>
+      <div class="pcard-auth">${p.auth}</div>
+      <span class="rbadge ${rc}">${p.rl}</span>
+      <div class="pcard-stats">
+        <div><div class="pcs-l">10Y CAGR</div><div class="pcs-v ${cv>=8?'g':cv>=5?'n':'r'}">${p.stats.cagr10}</div></div>
+        <div><div class="pcs-l">Max DD</div><div class="pcs-v r">${p.stats.maxDD}</div></div>
+        <div><div class="pcs-l">Sharpe</div><div class="pcs-v n">${p.stats.sharpe}</div></div>
+      </div>
+      <div class="pcard-bar">${bar}</div>`;
+    el.addEventListener('click',()=>nav(p.id));
+    g.appendChild(el);
+  });
+})();
+
+/* ─── DETAIL BUILD ─── */
+const _bd={}, _bc={};
+function buildDetail(p){
+  if(_bd[p.id])return; _bd[p.id]=true;
+  const al=p.alloc.map(a=>`<div class="leg-r"><div class="leg-sw" style="background:${a.c}"></div><div style="flex:1"><div class="leg-nm">${a.n}</div><div class="leg-sb">${a.s}</div></div><div class="leg-pc">${a.p}%</div></div>`).join('');
+  const fcs=['bull','base','bear'].map(sc=>{
+    const f=p.fc[sc],rv=f.r,av=f.a;
+    return `<div class="fc ${sc}"><div class="fc-lbl">${sc.charAt(0).toUpperCase()+sc.slice(1)} · ${sc==='base'?'50':'25'}%</div><div class="fc-ret">${rv>=0?'+':''}${rv}%</div><div class="fc-ann">~${av>=0?'+':''}${av}% / year</div><div class="fc-pts">${p.fpts[sc].map(t=>`<div class="fc-pt">${t}</div>`).join('')}</div></div>`;
+  }).join('');
+
+  const div=document.createElement('div');
+  div.id='view-'+p.id; div.className='view dv';
+  div.innerHTML=`
+    <div class="dv-hdr r0">
+      <div>
+        <div class="eyebrow">${p.num} · ${p.auth}</div>
+        <h2 class="display dv-h1">${p.name.replace('\n','<br>')}</h2>
+        <p class="dv-desc">${p.desc}</p>
+        <div class="tags">${p.tags.map((t,i)=>`<span class="tag${i===0?' hi':''}">${t}</span>`).join('')}</div>
+      </div>
+      <span class="rbadge ${p.risk==='l'?'rb-l':p.risk==='h'?'rb-h':'rb-m'}">${p.rl}</span>
+    </div>
+    <div class="kpi-row r1">
+      ${[['30Y CAGR',p.stats.cagr30,'Historical','g'],['10Y CAGR',p.stats.cagr10,'As of 2026','g'],['Std Dev',p.stats.stddev,'Annualised','n'],['Max Drawdown',p.stats.maxDD,'Peak-to-trough','r'],['Beta vs S&P',p.stats.beta,'Correlation','n'],['Sharpe Ratio',p.stats.sharpe,'Risk-adjusted','n']].map(([l,v,n,c])=>`<div class="kpi"><div class="kpi-l">${l}</div><div class="kpi-v ${c}">${v}</div><div class="kpi-n">${n}</div></div>`).join('')}
+    </div>
+    <div class="sec-lbl r2">Portfolio Allocation</div>
+    <div class="alloc-grid r2">
+      <div class="donut-wrap"><canvas id="dn-${p.id}"></canvas><div class="donut-ctr"><strong style="color:${p.acc}">${p.alloc.length}</strong><span>Assets</span></div></div>
+      <div class="leg">${al}</div>
+    </div>
+    <div class="sec-lbl">Historical Performance 2017 – 2024</div>
+    <div class="cp"><div class="cp-t">Annual Returns vs. S&P 500</div><div class="cp-s">Year-by-year total return. Portfolio bars vs. S&P 500 outline.</div><div class="ch"><canvas id="an-${p.id}"></canvas></div></div>
+    <div class="cp"><div class="cp-t">Cumulative Growth of $10,000</div><div class="cp-s">Compounded from $10,000 with annual rebalancing.</div><div class="ch"><canvas id="cm-${p.id}"></canvas></div></div>
+    <div class="sec-lbl">Monthly Returns</div>
+    <div class="tscroll"><table class="dt"><thead><tr><th>Year</th>${MOS.map(m=>`<th>${m}</th>`).join('')}<th>Total</th></tr></thead><tbody id="mb-${p.id}"></tbody></table></div>
+    <div class="g2">
+      <div class="cp" style="margin-bottom:0"><div class="cp-t">Risk vs. Return</div><div class="cp-s">This portfolio vs. all six peers.</div><div class="ch"><canvas id="sc-${p.id}"></canvas></div></div>
+      <div class="cp" style="margin-bottom:0"><div class="cp-t">Max Drawdowns</div><div class="cp-s">Peak-to-trough losses.</div><div class="ch"><canvas id="dd-${p.id}"></canvas></div></div>
+    </div>
+    <div class="sec-lbl" style="margin-top:48px">5-Year Forward Projections (2026 – 2030)</div>
+    <div class="disc"><p><strong>⚠ Disclaimer:</strong> These projections are illustrative scenarios only — not forecasts or investment advice. They use historical volatility, current yields (~4.5%), and mean-reversion assumptions. <strong>Past performance does not guarantee future results.</strong> All investing involves risk. Consult a qualified financial adviser.</p></div>
+    <div class="fcards">${fcs}</div>
+    <div class="cp"><div class="cp-t">5-Year Projected Range</div><div class="cp-s">Fan chart from $10,000. Bull / Base / Bear scenarios.</div><div class="ch"><canvas id="fo-${p.id}"></canvas></div></div>
+    <div class="foot" style="margin-top:32px"><strong>Data:</strong> PortfoliosLab · LazyPortfolioETF.com · Bogleheads Wiki &nbsp;·&nbsp; <strong>Educational purposes only. Not investment advice.</strong></div>`;
+  document.getElementById('detailCont').appendChild(div);
+}
+
+function initCharts(p){
+  if(_bc[p.id])return; _bc[p.id]=true;
+  // donut
+  new Chart(document.getElementById('dn-'+p.id),{type:'doughnut',data:{labels:p.alloc.map(a=>a.n),datasets:[{data:p.alloc.map(a=>a.p),backgroundColor:p.alloc.map(a=>a.c),borderColor:'#09090b',borderWidth:3,hoverOffset:5}]},options:{cutout:'68%',plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>` ${c.label}: ${c.parsed}%`}}}}});
+  // annual
+  new Chart(document.getElementById('an-'+p.id),{type:'bar',data:{labels:YEARS,datasets:[{label:p.short,data:p.ann,backgroundColor:p.ann.map(v=>v>=0?p.acc+'cc':'rgba(191,64,64,.7)'),borderRadius:2,barPercentage:.4},{label:'S&P 500',data:p.sp,backgroundColor:p.sp.map(v=>v>=0?'rgba(108,142,191,.25)':'rgba(191,64,64,.18)'),borderColor:p.sp.map(v=>v>=0?'rgba(108,142,191,.55)':'rgba(191,64,64,.45)'),borderWidth:1,borderRadius:2,barPercentage:.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y.toFixed(1)}%`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>v+'%'}}}}});
+  // cumulative
+  new Chart(document.getElementById('cm-'+p.id),{type:'line',data:{labels:YEARS,datasets:[{label:p.short,data:cum(p.ann),borderColor:p.acc,backgroundColor:p.acc+'18',fill:true,tension:.35,pointRadius:4,pointBackgroundColor:p.acc,borderWidth:2},{label:'S&P 500',data:cum(p.sp),borderColor:'#6c8ebf',backgroundColor:'rgba(108,142,191,.06)',fill:true,tension:.35,pointRadius:3,pointBackgroundColor:'#6c8ebf',borderWidth:1.5,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>'$'+(v/1000).toFixed(0)+'k'}}}}});
+  // monthly table
+  const tb=document.getElementById('mb-'+p.id);
+  p.mo.forEach(row=>{
+    const tr=document.createElement('tr');
+    let h=`<td class="yr">${row.y}</td>`;
+    row.m.forEach(v=>{const c=v>.4?'pos':v<-.4?'neg':'neu';h+=`<td class="${c}">${v>0?'+':''}${v.toFixed(1)}%</td>`;});
+    h+=`<td class="${row.t>0?'pos':'neg'}" style="font-weight:500">${row.t>0?'+':''}${row.t.toFixed(1)}%</td>`;
+    tr.innerHTML=h; tb.appendChild(tr);
+  });
+  // scatter
+  new Chart(document.getElementById('sc-'+p.id),{type:'bubble',data:{datasets:P.map(q=>({label:q.short,data:[{x:parseFloat(q.stats.stddev),y:parseFloat(q.stats.cagr10),r:q.id===p.id?15:8}],backgroundColor:(q.id===p.id?q.acc:'rgba(255,255,255,.15)')+'cc',borderColor:q.id===p.id?q.acc:'rgba(255,255,255,.12)',borderWidth:1.5}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#52525e',boxWidth:9,font:{size:9}}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}  Vol:${c.parsed.x}%  CAGR:${c.parsed.y}%`}}},scales:{x:{title:{display:true,text:'Volatility %',color:'#52525e'},grid:{color:GC},ticks:{color:'#52525e'}},y:{title:{display:true,text:'10Y CAGR %',color:'#52525e'},grid:{color:GC},ticks:{color:'#52525e'}}}}});
+  // drawdowns
+  const ddd=[...p.dd,{l:'S&P 2009',v:-50.9},{l:'S&P 2020',v:-33.8},{l:'60/40 2022',v:-16.1}];
+  new Chart(document.getElementById('dd-'+p.id),{type:'bar',indexAxis:'y',data:{labels:ddd.map(d=>d.l),datasets:[{data:ddd.map(d=>d.v),backgroundColor:ddd.map((_,i)=>i<p.dd.length?p.acc+'99':'rgba(191,64,64,.5)'),borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>` ${c.parsed.x.toFixed(1)}%`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>v+'%'}},y:{grid:{color:GC},ticks:{color:'#52525e'}}}}});
+  // forecast
+  function fp(a){let v=10000;return[10000,...[1,2,3,4,5].map(()=>{v*=(1+a/100);return+v.toFixed(0);})];}
+  new Chart(document.getElementById('fo-'+p.id),{type:'line',data:{labels:['2026','2027','2028','2029','2030','2031'],datasets:[{label:`Bull +${p.fc.bull.a}%/yr`,data:fp(p.fc.bull.a),borderColor:'#3a9e68',backgroundColor:'rgba(58,158,104,.07)',fill:'+1',tension:.3,pointRadius:4,borderWidth:2,pointBackgroundColor:'#3a9e68'},{label:`Base +${p.fc.base.a}%/yr`,data:fp(p.fc.base.a),borderColor:p.acc,backgroundColor:p.acc+'1a',fill:'+1',tension:.3,pointRadius:4,borderWidth:2.5,pointBackgroundColor:p.acc},{label:`Bear ${p.fc.bear.a>=0?'+':''}${p.fc.bear.a}%/yr`,data:fp(p.fc.bear.a),borderColor:'#bf4040',backgroundColor:'rgba(191,64,64,.05)',fill:false,tension:.3,pointRadius:4,borderWidth:1.5,borderDash:[6,4],pointBackgroundColor:'#bf4040'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>'$'+v.toLocaleString()}}}}});
+}
+
+/* ─── COMPARE ─── */
+let _cb=false;
+function buildCompare(){
+  if(_cb)return; _cb=true;
+
+  /* scenario cards */
+  const sg=document.getElementById('scGrid');
+  P.forEach(p=>{
+    const c=document.createElement('div'); c.className='sc-card';
+    const rows=['bull','base','bear'].map(sc=>{
+      const rv=p.fc[sc].r, av=p.fc[sc].a;
+      const col=sc==='bull'?'var(--green)':sc==='base'?p.acc:'var(--red)';
+      const w=Math.max(2,Math.round(Math.abs(rv)/110*100));
+      return `<div>
+        <div class="sc-row">
+          <span class="sc-dot" style="background:${col}"></span>
+          <span class="sc-lbl">${sc}</span>
+          <span class="sc-val" style="color:${col}">${rv>=0?'+':''}${rv}%</span>
+        </div>
+        <div class="sc-ann">${av>=0?'+':''}${av}%/yr</div>
+        <div class="sc-bar"><div class="sc-bar-fill" style="width:${w}%;background:${col}"></div></div>
+      </div>`;
+    }).join('');
+    c.innerHTML=`<div class="sc-card-nm">${p.short}</div><div style="display:flex;flex-direction:column;gap:10px">${rows}</div>`;
+    sg.appendChild(c);
+  });
+
+  /* scenario bar chart */
+  new Chart(document.getElementById('cmpScenChart'),{type:'bar',data:{labels:P.map(p=>p.short),datasets:[{label:'Bull Case',data:P.map(p=>p.fc.bull.r),backgroundColor:'rgba(58,158,104,.7)',borderColor:'#3a9e68',borderWidth:1,borderRadius:2,barPercentage:.7},{label:'Base Case',data:P.map(p=>p.fc.base.r),backgroundColor:P.map(p=>p.acc+'99'),borderColor:P.map(p=>p.acc),borderWidth:1,borderRadius:2,barPercentage:.7},{label:'Bear Case',data:P.map(p=>p.fc.bear.r),backgroundColor:'rgba(191,64,64,.6)',borderColor:'#bf4040',borderWidth:1,borderRadius:2,barPercentage:.7}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y>=0?'+':''}${c.parsed.y}% (5-yr total)`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>v+'%'},title:{display:true,text:'5-Year Total Return (%)',color:'#52525e'}}}}});
+
+  /* scatter */
+  new Chart(document.getElementById('cmpScatter'),{type:'bubble',data:{datasets:P.map(p=>({label:p.short,data:[{x:parseFloat(p.stats.stddev),y:parseFloat(p.stats.cagr10),r:15}],backgroundColor:p.acc+'cc',borderColor:p.acc,borderWidth:2}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}  —  Vol: ${c.parsed.x}%  |  10Y CAGR: ${c.parsed.y}%`}}},scales:{x:{title:{display:true,text:'Volatility — Std Deviation (%)',color:'#52525e'},grid:{color:GC},ticks:{color:'#52525e'},min:4,max:20},y:{title:{display:true,text:'10-Year CAGR (%)',color:'#52525e'},grid:{color:GC},ticks:{color:'#52525e'},min:4,max:15}}}});
+
+  /* metrics table */
+  const tbl=document.getElementById('cmpTbl');
+  const MK=[{k:'cagr10',l:'10Y CAGR',hi:true},{k:'cagr30',l:'30Y CAGR',hi:true},{k:'stddev',l:'Std Dev',hi:false},{k:'maxDD',l:'Max DD',hi:false},{k:'beta',l:'Beta',hi:false},{k:'sharpe',l:'Sharpe',hi:true}];
+  const vs=MK.map(m=>P.map(p=>parseFloat(p.stats[m.k])));
+  tbl.innerHTML=`<thead><tr><th>Portfolio</th>${MK.map(m=>`<th>${m.l}</th>`).join('')}<th>8-Yr $10k</th></tr></thead>`;
+  const tb=document.createElement('tbody');
+  P.forEach(p=>{
+    const fv=cum(p.ann)[7]; const bw=Math.round(fv/35000*100);
+    const tr=document.createElement('tr');
+    let h=`<td class="nm">${p.short}</td>`;
+    MK.forEach((m,ki)=>{
+      const v=parseFloat(p.stats[m.k]);
+      const best=m.hi?Math.max(...vs[ki]):Math.min(...vs[ki]);
+      const worst=m.hi?Math.min(...vs[ki]):Math.max(...vs[ki]);
+      h+=`<td class="${v===best?'best':v===worst?'worst':''}">${p.stats[m.k]}</td>`;
+    });
+    h+=`<td><div class="bar-cell"><div class="bar-fill" style="width:${bw}%;background:${p.acc}"></div><span>$${fv.toLocaleString()}</span></div></td>`;
+    tr.innerHTML=h; tb.appendChild(tr);
+  });
+  tbl.appendChild(tb);
+
+  /* growth */
+  new Chart(document.getElementById('cmpGrowth'),{type:'line',data:{labels:YEARS,datasets:P.map(p=>({label:p.short,data:cum(p.ann),borderColor:p.acc,backgroundColor:'transparent',tension:.35,pointRadius:3,borderWidth:2,pointBackgroundColor:p.acc}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9,font:{size:10}}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>'$'+(v/1000).toFixed(0)+'k'}}}}});
+
+  /* heatmap */
+  new Chart(document.getElementById('cmpHeat'),{type:'bar',data:{labels:YEARS,datasets:P.map(p=>({label:p.short,data:p.ann,backgroundColor:p.ann.map(v=>v>=0?p.acc+'bb':'rgba(191,64,64,.6)'),borderRadius:2,barPercentage:.9}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7a7a88',boxWidth:9,font:{size:10}}},tooltip:{...TT,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y.toFixed(1)}%`}}},scales:{x:{grid:{color:GC},ticks:{color:'#52525e'}},y:{grid:{color:GC},ticks:{color:'#52525e',callback:v=>v+'%'}}}}});
+}
+
+/* ─── NAVIGATE ─── */
+function nav(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  if(id==='compare'){
+    buildCompare();
+    document.getElementById('view-compare').classList.add('on');
+  } else if(id==='overview'){
+    document.getElementById('view-overview').classList.add('on');
+  } else {
+    const p=P.find(x=>x.id===id);
+    buildDetail(p);
+    document.getElementById('view-'+id).classList.add('on');
+    requestAnimationFrame(()=>setTimeout(()=>initCharts(p),30));
+  }
+  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
+  const t=document.querySelector(`.ntab[data-v="${id}"]`);
+  if(t) t.classList.add('on');
+  document.getElementById('cmpBtn').classList.toggle('on',id==='compare');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* boot */
+document.querySelectorAll('.ntab').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.v)));
+document.getElementById('cmpBtn').addEventListener('click',()=>nav('compare'));
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # baseurl       = "https://pierregarreau.github.io/"
 baseurl       = "https://dazzling-galileo-470027.netlify.app/"
-languageCode  = "en-us"
+locale        = "en-US"
 contentdir    = "content"
 layoutdir     = "layouts"
 publishdir    = "public"
@@ -45,6 +45,8 @@ url                    = "/blog/"
   # gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
 
 [markup]
+  [markup.goldmark.renderer]
+    unsafe = true
   [markup.highlight]
     codeFences = true
     guessSyntax = false
