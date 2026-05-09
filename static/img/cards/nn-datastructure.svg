@@ -1,0 +1,253 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0ebe4"/>
+      <stop offset="100%" stop-color="#f0ebe4"/>
+    </linearGradient>
+    <radialGradient id="nodeCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6aaee0"/>
+      <stop offset="100%" stop-color="#2a6496"/>
+    </radialGradient>
+    <radialGradient id="nodeFaint" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#428bca"/>
+      <stop offset="100%" stop-color="#1e3d6e"/>
+    </radialGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="ambientLeft" cx="20%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#2a6496" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#2a6496" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ambientRight" cx="80%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <rect width="600" height="400" fill="url(#ambientLeft)"/>
+  <rect width="600" height="400" fill="url(#ambientRight)"/>
+
+  <!--
+    Layer positions (x):
+    Input:  80
+    H1:    200
+    H2:    320
+    H3:    440
+    Output: 560
+
+    Node y positions:
+    Input  (4 nodes): 80, 160, 240, 320
+    H1     (5 nodes): 50, 130, 200, 270, 350
+    H2     (6 nodes): 33, 100, 167, 233, 300, 367
+    H3     (5 nodes): 50, 130, 200, 270, 350
+    Output (3 nodes): 120, 200, 280
+  -->
+
+  <!-- Connection lines: Input → H1 -->
+  <g stroke="#428bca" stroke-width="0.6" opacity="0.12" fill="none">
+    <!-- from each input node to each H1 node -->
+    <line x1="80" y1="80"  x2="200" y2="50"/>
+    <line x1="80" y1="80"  x2="200" y2="130"/>
+    <line x1="80" y1="80"  x2="200" y2="200"/>
+    <line x1="80" y1="80"  x2="200" y2="270"/>
+    <line x1="80" y1="80"  x2="200" y2="350"/>
+
+    <line x1="80" y1="160" x2="200" y2="50"/>
+    <line x1="80" y1="160" x2="200" y2="130"/>
+    <line x1="80" y1="160" x2="200" y2="200"/>
+    <line x1="80" y1="160" x2="200" y2="270"/>
+    <line x1="80" y1="160" x2="200" y2="350"/>
+
+    <line x1="80" y1="240" x2="200" y2="50"/>
+    <line x1="80" y1="240" x2="200" y2="130"/>
+    <line x1="80" y1="240" x2="200" y2="200"/>
+    <line x1="80" y1="240" x2="200" y2="270"/>
+    <line x1="80" y1="240" x2="200" y2="350"/>
+
+    <line x1="80" y1="320" x2="200" y2="50"/>
+    <line x1="80" y1="320" x2="200" y2="130"/>
+    <line x1="80" y1="320" x2="200" y2="200"/>
+    <line x1="80" y1="320" x2="200" y2="270"/>
+    <line x1="80" y1="320" x2="200" y2="350"/>
+  </g>
+
+  <!-- Highlighted connections Input → H1 -->
+  <g stroke="#428bca" stroke-width="1.2" fill="none">
+    <line x1="80" y1="160" x2="200" y2="200" opacity="0.55"/>
+    <line x1="80" y1="240" x2="200" y2="200" opacity="0.45"/>
+    <line x1="80" y1="80"  x2="200" y2="130" opacity="0.4"/>
+    <line x1="80" y1="320" x2="200" y2="270" opacity="0.35"/>
+  </g>
+
+  <!-- Connection lines: H1 → H2 -->
+  <g stroke="#428bca" stroke-width="0.6" opacity="0.1" fill="none">
+    <line x1="200" y1="50"  x2="320" y2="33"/>
+    <line x1="200" y1="50"  x2="320" y2="100"/>
+    <line x1="200" y1="50"  x2="320" y2="167"/>
+    <line x1="200" y1="50"  x2="320" y2="233"/>
+    <line x1="200" y1="50"  x2="320" y2="300"/>
+    <line x1="200" y1="50"  x2="320" y2="367"/>
+    <line x1="200" y1="130" x2="320" y2="33"/>
+    <line x1="200" y1="130" x2="320" y2="100"/>
+    <line x1="200" y1="130" x2="320" y2="167"/>
+    <line x1="200" y1="130" x2="320" y2="233"/>
+    <line x1="200" y1="130" x2="320" y2="300"/>
+    <line x1="200" y1="130" x2="320" y2="367"/>
+    <line x1="200" y1="200" x2="320" y2="33"/>
+    <line x1="200" y1="200" x2="320" y2="100"/>
+    <line x1="200" y1="200" x2="320" y2="167"/>
+    <line x1="200" y1="200" x2="320" y2="233"/>
+    <line x1="200" y1="200" x2="320" y2="300"/>
+    <line x1="200" y1="200" x2="320" y2="367"/>
+    <line x1="200" y1="270" x2="320" y2="100"/>
+    <line x1="200" y1="270" x2="320" y2="167"/>
+    <line x1="200" y1="270" x2="320" y2="233"/>
+    <line x1="200" y1="270" x2="320" y2="300"/>
+    <line x1="200" y1="270" x2="320" y2="367"/>
+    <line x1="200" y1="350" x2="320" y2="233"/>
+    <line x1="200" y1="350" x2="320" y2="300"/>
+    <line x1="200" y1="350" x2="320" y2="367"/>
+  </g>
+  <!-- Highlighted H1 → H2 -->
+  <g stroke="#6aaee0" stroke-width="1.2" fill="none">
+    <line x1="200" y1="200" x2="320" y2="167" opacity="0.5"/>
+    <line x1="200" y1="200" x2="320" y2="233" opacity="0.5"/>
+    <line x1="200" y1="130" x2="320" y2="100" opacity="0.35"/>
+    <line x1="200" y1="270" x2="320" y2="300" opacity="0.35"/>
+  </g>
+
+  <!-- Connection lines: H2 → H3 -->
+  <g stroke="#428bca" stroke-width="0.6" opacity="0.1" fill="none">
+    <line x1="320" y1="33"  x2="440" y2="50"/>
+    <line x1="320" y1="33"  x2="440" y2="130"/>
+    <line x1="320" y1="100" x2="440" y2="50"/>
+    <line x1="320" y1="100" x2="440" y2="130"/>
+    <line x1="320" y1="100" x2="440" y2="200"/>
+    <line x1="320" y1="167" x2="440" y2="50"/>
+    <line x1="320" y1="167" x2="440" y2="130"/>
+    <line x1="320" y1="167" x2="440" y2="200"/>
+    <line x1="320" y1="167" x2="440" y2="270"/>
+    <line x1="320" y1="233" x2="440" y2="130"/>
+    <line x1="320" y1="233" x2="440" y2="200"/>
+    <line x1="320" y1="233" x2="440" y2="270"/>
+    <line x1="320" y1="233" x2="440" y2="350"/>
+    <line x1="320" y1="300" x2="440" y2="200"/>
+    <line x1="320" y1="300" x2="440" y2="270"/>
+    <line x1="320" y1="300" x2="440" y2="350"/>
+    <line x1="320" y1="367" x2="440" y2="270"/>
+    <line x1="320" y1="367" x2="440" y2="350"/>
+  </g>
+  <g stroke="#428bca" stroke-width="1.2" fill="none">
+    <line x1="320" y1="167" x2="440" y2="200" opacity="0.5"/>
+    <line x1="320" y1="233" x2="440" y2="200" opacity="0.5"/>
+    <line x1="320" y1="100" x2="440" y2="130" opacity="0.35"/>
+    <line x1="320" y1="300" x2="440" y2="270" opacity="0.35"/>
+  </g>
+
+  <!-- Connection lines: H3 → Output -->
+  <g stroke="#428bca" stroke-width="0.6" opacity="0.1" fill="none">
+    <line x1="440" y1="50"  x2="560" y2="120"/>
+    <line x1="440" y1="50"  x2="560" y2="200"/>
+    <line x1="440" y1="130" x2="560" y2="120"/>
+    <line x1="440" y1="130" x2="560" y2="200"/>
+    <line x1="440" y1="200" x2="560" y2="120"/>
+    <line x1="440" y1="200" x2="560" y2="200"/>
+    <line x1="440" y1="200" x2="560" y2="280"/>
+    <line x1="440" y1="270" x2="560" y2="200"/>
+    <line x1="440" y1="270" x2="560" y2="280"/>
+    <line x1="440" y1="350" x2="560" y2="200"/>
+    <line x1="440" y1="350" x2="560" y2="280"/>
+  </g>
+  <g stroke="#6aaee0" stroke-width="1.4" fill="none">
+    <line x1="440" y1="200" x2="560" y2="200" opacity="0.6"/>
+    <line x1="440" y1="130" x2="560" y2="120" opacity="0.4"/>
+    <line x1="440" y1="270" x2="560" y2="280" opacity="0.4"/>
+  </g>
+
+  <!-- Input layer nodes -->
+  <g filter="url(#glow)">
+    <circle cx="80" cy="80"  r="10" fill="url(#nodeFaint)" opacity="0.6"/>
+    <circle cx="80" cy="160" r="12" fill="url(#nodeCore)"  opacity="0.85"/>
+    <circle cx="80" cy="240" r="12" fill="url(#nodeCore)"  opacity="0.85"/>
+    <circle cx="80" cy="320" r="8"  fill="url(#nodeFaint)" opacity="0.5"/>
+  </g>
+  <g fill="#b3d4fc" opacity="0.7">
+    <circle cx="80" cy="80"  r="3"/>
+    <circle cx="80" cy="160" r="4"/>
+    <circle cx="80" cy="240" r="4"/>
+    <circle cx="80" cy="320" r="2.5"/>
+  </g>
+
+  <!-- H1 nodes -->
+  <g filter="url(#glow)">
+    <circle cx="200" cy="50"  r="8"  fill="url(#nodeFaint)" opacity="0.4"/>
+    <circle cx="200" cy="130" r="10" fill="url(#nodeFaint)" opacity="0.6"/>
+    <circle cx="200" cy="200" r="13" fill="url(#nodeCore)"  opacity="0.9"/>
+    <circle cx="200" cy="270" r="10" fill="url(#nodeFaint)" opacity="0.6"/>
+    <circle cx="200" cy="350" r="7"  fill="url(#nodeFaint)" opacity="0.35"/>
+  </g>
+  <g fill="#b3d4fc">
+    <circle cx="200" cy="50"  r="2.5" opacity="0.5"/>
+    <circle cx="200" cy="130" r="3"   opacity="0.65"/>
+    <circle cx="200" cy="200" r="4.5" opacity="0.9"/>
+    <circle cx="200" cy="270" r="3"   opacity="0.65"/>
+    <circle cx="200" cy="350" r="2"   opacity="0.4"/>
+  </g>
+
+  <!-- H2 nodes (most nodes, widest layer) -->
+  <g filter="url(#glow)">
+    <circle cx="320" cy="33"  r="7"  fill="url(#nodeFaint)" opacity="0.3"/>
+    <circle cx="320" cy="100" r="9"  fill="url(#nodeFaint)" opacity="0.5"/>
+    <circle cx="320" cy="167" r="12" fill="url(#nodeCore)"  opacity="0.8"/>
+    <circle cx="320" cy="233" r="13" fill="url(#nodeCore)"  opacity="0.9"/>
+    <circle cx="320" cy="300" r="10" fill="url(#nodeFaint)" opacity="0.55"/>
+    <circle cx="320" cy="367" r="7"  fill="url(#nodeFaint)" opacity="0.3"/>
+  </g>
+  <g fill="#b3d4fc">
+    <circle cx="320" cy="33"  r="2"   opacity="0.35"/>
+    <circle cx="320" cy="100" r="2.5" opacity="0.55"/>
+    <circle cx="320" cy="167" r="4"   opacity="0.8"/>
+    <circle cx="320" cy="233" r="4.5" opacity="0.9"/>
+    <circle cx="320" cy="300" r="3"   opacity="0.6"/>
+    <circle cx="320" cy="367" r="2"   opacity="0.35"/>
+  </g>
+
+  <!-- H3 nodes -->
+  <g filter="url(#glow)">
+    <circle cx="440" cy="50"  r="7"  fill="url(#nodeFaint)" opacity="0.35"/>
+    <circle cx="440" cy="130" r="10" fill="url(#nodeFaint)" opacity="0.55"/>
+    <circle cx="440" cy="200" r="14" fill="url(#nodeCore)"  opacity="0.95"/>
+    <circle cx="440" cy="270" r="10" fill="url(#nodeFaint)" opacity="0.55"/>
+    <circle cx="440" cy="350" r="7"  fill="url(#nodeFaint)" opacity="0.35"/>
+  </g>
+  <g fill="#b3d4fc">
+    <circle cx="440" cy="50"  r="2"   opacity="0.4"/>
+    <circle cx="440" cy="130" r="3"   opacity="0.6"/>
+    <circle cx="440" cy="200" r="5"   opacity="1" filter="url(#glow)"/>
+    <circle cx="440" cy="270" r="3"   opacity="0.6"/>
+    <circle cx="440" cy="350" r="2"   opacity="0.4"/>
+  </g>
+
+  <!-- Output nodes -->
+  <g filter="url(#softglow)">
+    <circle cx="560" cy="120" r="11" fill="url(#nodeFaint)" opacity="0.7"/>
+    <circle cx="560" cy="200" r="16" fill="url(#nodeCore)"  opacity="1"/>
+    <circle cx="560" cy="280" r="11" fill="url(#nodeFaint)" opacity="0.7"/>
+  </g>
+  <g fill="#dde3ee">
+    <circle cx="560" cy="120" r="3.5" opacity="0.75"/>
+    <circle cx="560" cy="200" r="5.5" opacity="1"/>
+    <circle cx="560" cy="280" r="3.5" opacity="0.75"/>
+  </g>
+
+  <!-- Border -->
+  <rect width="600" height="400" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.08"/>
+</svg>

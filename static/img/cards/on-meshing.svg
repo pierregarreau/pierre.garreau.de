@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0ebe4"/>
+      <stop offset="100%" stop-color="#f0ebe4"/>
+    </linearGradient>
+    <radialGradient id="densityCore" cx="38%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="densityEdge" cx="75%" cy="70%" r="30%">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="clip">
+      <rect width="600" height="400"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <rect width="600" height="400" fill="url(#densityCore)"/>
+  <rect width="600" height="400" fill="url(#densityEdge)"/>
+
+  <!--
+    Delaunay triangulation — hand-crafted mesh
+    Vertices (name → x,y):
+    Dense region around (200,170):
+      A  60,20
+      B  160,15
+      C  280,30
+      D  420,25
+      E  540,40
+      F  580,110
+      G  580,240
+      H  560,360
+      I  440,390
+      J  300,380
+      K  150,395
+      L  20,370
+      M  0,240
+      N  0,110
+      O  100,80
+      P  200,60
+      Q  320,70
+      R  460,80
+      S  530,170
+      T  500,290
+      U  390,340
+      V  250,350
+      W  130,330
+      X  50,270
+      Y  80,180
+      Z  170,140
+      AA 260,155
+      AB 350,130
+      AC 440,185
+      AD 480,250
+      AE 360,250
+      AF 250,260
+      AG 160,230
+      AH 200,170
+      AI 300,200
+      AJ 130,155
+      AK 220,320
+      AL 320,300
+      AM 410,290
+    Denser cluster ~(200,170):
+      AN 180,110
+      AO 240,100
+      AP 290,120
+      AQ 260,185
+      AR 185,190
+      AS 210,220
+      AT 270,240
+      AU 220,150
+      AV 300,155
+    Very dense:
+      AW 195,145
+      AX 240,135
+      AY 265,160
+      AZ 230,175
+  -->
+
+  <!-- Triangles — outer/sparse region, faintest -->
+  <g clip-path="url(#clip)" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.1">
+    <!-- Peripheral triangles -->
+    <polygon points="60,20  160,15  100,80"/>
+    <polygon points="160,15 280,30  100,80"/>
+    <polygon points="160,15 280,30  320,70"/>
+    <polygon points="280,30 320,70  420,25"/>
+    <polygon points="420,25 320,70  460,80"/>
+    <polygon points="420,25 460,80  540,40"/>
+    <polygon points="540,40 460,80  530,170"/>
+    <polygon points="540,40 530,170 580,110"/>
+    <polygon points="580,110 530,170 580,240"/>
+    <polygon points="580,240 530,170 500,290"/>
+    <polygon points="580,240 500,290 560,360"/>
+    <polygon points="560,360 500,290 440,390"/>
+    <polygon points="440,390 500,290 390,340"/>
+    <polygon points="440,390 390,340 300,380"/>
+    <polygon points="300,380 390,340 250,350"/>
+    <polygon points="300,380 250,350 150,395"/>
+    <polygon points="150,395 250,350 130,330"/>
+    <polygon points="150,395 130,330 20,370"/>
+    <polygon points="20,370  130,330 0,240"/>
+    <polygon points="0,240  130,330 50,270"/>
+    <polygon points="0,240  50,270  0,110"/>
+    <polygon points="0,110  50,270  80,180"/>
+    <polygon points="0,110  80,180  60,20"/>
+    <polygon points="60,20  80,180  100,80"/>
+    <!-- Mid outer -->
+    <polygon points="100,80  80,180  170,140"/>
+    <polygon points="100,80  170,140 200,60"/>
+    <polygon points="200,60  170,140 320,70"/>
+    <polygon points="320,70  170,140 460,80"/>
+    <polygon points="460,80  170,140 530,170"/>
+    <polygon points="530,170 170,140 500,290"/>
+    <polygon points="500,290 170,140 390,340"/>
+    <polygon points="390,340 250,350 160,230"/>
+    <polygon points="250,350 130,330 160,230"/>
+    <polygon points="130,330 50,270  160,230"/>
+    <polygon points="50,270  80,180  160,230"/>
+    <polygon points="80,180  170,140 160,230"/>
+  </g>
+
+  <!-- Mid-density triangles -->
+  <g clip-path="url(#clip)" fill="none" stroke="#428bca" stroke-width="0.6" opacity="0.18">
+    <polygon points="170,140 200,60  320,70"/>
+    <polygon points="170,140 320,70  350,130"/>
+    <polygon points="320,70  350,130 460,80"/>
+    <polygon points="460,80  350,130 530,170"/>
+    <polygon points="530,170 350,130 480,250"/>
+    <polygon points="480,250 350,130 410,290"/>
+    <polygon points="410,290 350,130 360,250"/>
+    <polygon points="360,250 350,130 260,155"/>
+    <polygon points="260,155 350,130 320,70"/>
+    <polygon points="170,140 260,155 160,230"/>
+    <polygon points="160,230 260,155 250,260"/>
+    <polygon points="250,260 260,155 360,250"/>
+    <polygon points="360,250 260,155 480,250"/>
+    <polygon points="480,250 410,290 360,250"/>
+    <polygon points="360,250 410,290 320,300"/>
+    <polygon points="320,300 250,260 360,250"/>
+    <polygon points="250,260 320,300 220,320"/>
+    <polygon points="220,320 130,330 160,230"/>
+    <polygon points="220,320 160,230 250,260"/>
+    <polygon points="160,230 170,140 80,180"/>
+  </g>
+
+  <!-- Inner dense triangles -->
+  <g clip-path="url(#clip)" fill="none" stroke="#428bca" stroke-width="0.8" opacity="0.3">
+    <polygon points="170,140 200,60  240,100"/>
+    <polygon points="200,60  240,100 290,120"/>
+    <polygon points="290,120 240,100 350,130"/>
+    <polygon points="240,100 290,120 260,155"/>
+    <polygon points="240,100 260,155 170,140"/>
+    <polygon points="170,140 260,155 200,170"/>
+    <polygon points="200,170 260,155 300,200"/>
+    <polygon points="300,200 260,155 360,250"/>
+    <polygon points="260,155 290,120 300,200"/>
+    <polygon points="290,120 350,130 300,200"/>
+    <polygon points="350,130 360,250 300,200"/>
+    <polygon points="300,200 360,250 250,260"/>
+    <polygon points="250,260 200,170 300,200"/>
+    <polygon points="200,170 250,260 160,230"/>
+    <polygon points="160,230 250,260 220,320"/>
+  </g>
+
+  <!-- Very dense core triangles — brightest -->
+  <g clip-path="url(#clip)" fill="none" stroke="#6aaee0" stroke-width="1" opacity="0.45">
+    <polygon points="200,60  220,150 240,100"/>
+    <polygon points="220,150 240,135 240,100"/>
+    <polygon points="240,100 240,135 290,120"/>
+    <polygon points="240,135 265,160 290,120"/>
+    <polygon points="220,150 240,135 195,145"/>
+    <polygon points="195,145 240,135 230,175"/>
+    <polygon points="230,175 240,135 265,160"/>
+    <polygon points="195,145 230,175 185,190"/>
+    <polygon points="185,190 230,175 210,220"/>
+    <polygon points="210,220 230,175 270,240"/>
+    <polygon points="270,240 230,175 265,160"/>
+    <polygon points="265,160 300,200 270,240"/>
+    <polygon points="265,160 290,120 300,200"/>
+    <polygon points="195,145 185,190 170,140"/>
+    <polygon points="170,140 185,190 160,230"/>
+    <polygon points="185,190 210,220 160,230"/>
+    <polygon points="160,230 210,220 220,320"/>
+    <polygon points="210,220 270,240 250,260"/>
+    <polygon points="250,260 210,220 220,320"/>
+  </g>
+
+  <!-- Filled triangles in dense core — very subtle fill -->
+  <g clip-path="url(#clip)" fill="#428bca" stroke="none" opacity="0.04">
+    <polygon points="195,145 230,175 220,150"/>
+    <polygon points="230,175 265,160 240,135"/>
+    <polygon points="230,175 265,160 270,240"/>
+    <polygon points="195,145 185,190 230,175"/>
+    <polygon points="185,190 210,220 230,175"/>
+  </g>
+
+  <!-- Bright filled accent triangle at core -->
+  <polygon points="220,150 240,135 230,175" fill="#428bca" opacity="0.12" filter="url(#glow)"/>
+  <polygon points="230,175 240,135 265,160" fill="#428bca" opacity="0.1" filter="url(#glow)"/>
+
+  <!-- Vertex dots — scaled by density -->
+  <!-- Outer vertices, faint -->
+  <g fill="#428bca" opacity="0.2">
+    <circle cx="60"  cy="20"  r="1.5"/>
+    <circle cx="160" cy="15"  r="1.5"/>
+    <circle cx="280" cy="30"  r="1.5"/>
+    <circle cx="420" cy="25"  r="1.5"/>
+    <circle cx="540" cy="40"  r="1.5"/>
+    <circle cx="580" cy="110" r="1.5"/>
+    <circle cx="580" cy="240" r="1.5"/>
+    <circle cx="560" cy="360" r="1.5"/>
+    <circle cx="440" cy="390" r="1.5"/>
+    <circle cx="300" cy="380" r="1.5"/>
+    <circle cx="150" cy="395" r="1.5"/>
+    <circle cx="20"  cy="370" r="1.5"/>
+    <circle cx="0"   cy="240" r="1.5"/>
+    <circle cx="0"   cy="110" r="1.5"/>
+    <circle cx="50"  cy="270" r="1.5"/>
+    <circle cx="80"  cy="180" r="1.5"/>
+  </g>
+  <!-- Mid vertices -->
+  <g fill="#428bca" opacity="0.35">
+    <circle cx="100" cy="80"  r="2"/>
+    <circle cx="200" cy="60"  r="2"/>
+    <circle cx="320" cy="70"  r="2"/>
+    <circle cx="460" cy="80"  r="2"/>
+    <circle cx="530" cy="170" r="2"/>
+    <circle cx="500" cy="290" r="2"/>
+    <circle cx="390" cy="340" r="2"/>
+    <circle cx="250" cy="350" r="2"/>
+    <circle cx="130" cy="330" r="2"/>
+    <circle cx="160" cy="230" r="2"/>
+    <circle cx="250" cy="260" r="2"/>
+    <circle cx="360" cy="250" r="2"/>
+    <circle cx="480" cy="250" r="2"/>
+    <circle cx="410" cy="290" r="2"/>
+    <circle cx="350" cy="130" r="2"/>
+    <circle cx="260" cy="155" r="2"/>
+    <circle cx="170" cy="140" r="2"/>
+    <circle cx="300" cy="200" r="2.5"/>
+    <circle cx="220" cy="320" r="2"/>
+    <circle cx="320" cy="300" r="2"/>
+  </g>
+  <!-- Inner dense vertices -->
+  <g fill="#6aaee0" opacity="0.6">
+    <circle cx="200" cy="60"  r="2.5"/>
+    <circle cx="240" cy="100" r="2.5"/>
+    <circle cx="290" cy="120" r="2.5"/>
+    <circle cx="240" cy="135" r="3"/>
+    <circle cx="220" cy="150" r="3"/>
+    <circle cx="195" cy="145" r="2.5"/>
+    <circle cx="185" cy="190" r="2.5"/>
+    <circle cx="210" cy="220" r="2.5"/>
+    <circle cx="270" cy="240" r="2.5"/>
+    <circle cx="265" cy="160" r="3"/>
+  </g>
+  <!-- Core vertex — brightest -->
+  <circle cx="230" cy="175" r="4.5" fill="#b3d4fc" opacity="0.85" filter="url(#glow)"/>
+  <circle cx="230" cy="175" r="2" fill="#2d3142" opacity="0.9"/>
+
+  <!-- Border -->
+  <rect width="600" height="400" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.08"/>
+</svg>

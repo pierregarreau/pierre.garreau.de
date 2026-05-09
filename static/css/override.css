@@ -1,11 +1,212 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+/*
+ * override.css
+ * Typography and layout layer — Source Serif 4 editorial style.
+ *
+ * Palette (from std-bureau.framer.website):
+ *   Text primary   #0f0f0f   Near-black
+ *   Text secondary #4d4d4d   Dark gray
+ *   Text muted     #9a9a9a   Mid gray
+ *   Background     #fefdfa   Warm off-white
+ *   Border         #e8e4de   Warm rule
+ */
 
-body, section, header {
-    font-family: 'Quicksand', sans-serif;
+/* ─── Base ───────────────────────────────────────────────────────── */
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #0f0f0f;
+  background: #fefdfa;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: #0f0f0f;
+  font-weight: 400;
+}
+
+/* ─── Content column — left-biased, 1/3 left margin, 2/3 right ──── */
+
+.container,
+.wrapper {
+  max-width: 750px !important;
+  width: 750px !important;
+  margin-left: max(24px, calc((100vw - 750px) / 3)) !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* ─── Site header ─────────────────────────────────────────────────── */
+
+.site-header {
+  padding: 40px 0 32px;
+  text-align: left;
+}
+
+.sh-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sh-avatar-link {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sh-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0; /* override theme img { margin: auto } */
+}
+
+.sh-bio {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sh-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #0f0f0f;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.sh-name:hover {
+  color: #4d4d4d;
+}
+
+.sh-intro {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #4d4d4d;
+  margin: 3px 0 8px;
+  line-height: 1.5;
+}
+
+.sh-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sh-links a {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 11px;
+  color: #4d4d4d;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: #c8c4be;
+  transition: color 0.15s;
+}
+
+.sh-links a:hover {
+  color: #0f0f0f;
+  text-decoration-color: #0f0f0f;
+}
+
+/* ─── Nav ─────────────────────────────────────────────────────────── */
+
+.sh-nav {
+  margin-top: 20px;
+}
+
+.sh-nav ul.flat {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+}
+
+.sh-nav ul.flat li {
+  margin: 0;
+}
+
+.sh-nav ul.flat li a {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9a9a9a;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.sh-nav ul.flat li a:hover {
+  color: #0f0f0f;
+}
+
+/* ─── Dividers ────────────────────────────────────────────────────── */
+
+hr {
+  border: none;
+  border-top: 1px solid #e8e4de;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────────── */
+
+.footer {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9a9a9a;
+  border-top: 1px solid #e8e4de;
+  padding: 24px 0;
+  margin-top: 40px;
+  background: transparent;
+  text-align: left;
+}
+
+.footer a {
+  color: #9a9a9a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer a:hover {
+  color: #0f0f0f;
+}
+
+/* ─── Post body typography ───────────────────────────────────────── */
+
+.post-content,
+section.main .content .markdown {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #0f0f0f;
+}
+
+section.main .content .markdown p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #0f0f0f;
 }
 
 section.main .content .markdown img {
   margin: auto;
   display: block;
   max-width: 100%;
+}
+
+/* ─── Single post title ──────────────────────────────────────────── */
+
+.post-title,
+h1.post-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.25;
+  color: #0f0f0f;
 }

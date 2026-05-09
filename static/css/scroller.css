@@ -1,0 +1,240 @@
+/*
+ * scroller.css
+ * Horizontal scroll card component — typography-only, centered snap.
+ *
+ * .hs-root   — full-bleed section wrapper
+ * .hs-track  — scrollable flex row, snap center
+ * .hs-card   — square-ish post card (anchor)
+ * .hs-hint   — "scroll →" label that fades on load
+ */
+
+/*
+ * Palette: derived from the ezhil theme's #428bca link blue.
+ * Cards sit on a cool off-white (#f4f6fb) that reads lighter than
+ * the page body without being pure white. The accent (#428bca) is
+ * used only for the counter — everything else is neutral.
+ */
+
+:root {
+  --hs-fg:            #2d3142;   /* deep navy-gray — warmer than #333 */
+  --hs-muted:         #8b93a7;   /* cool mid-gray */
+  --hs-accent:        #428bca;   /* existing link blue */
+  --hs-border:        #dde3ee;   /* blue-tinted light border */
+  --hs-card-bg:       #f4f6fb;   /* airy cool off-white */
+  --hs-card-shadow:   rgba(66, 139, 202, 0.07);
+  --hs-card-shadow-h: rgba(66, 139, 202, 0.16);
+  --hs-progress-bg:   #dde3ee;
+  --hs-progress-fill: #428bca;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --hs-fg:            #dde3ee;
+    --hs-muted:         #6b7590;
+    --hs-accent:        #6aaee0;
+    --hs-border:        #2a3045;
+    --hs-card-bg:       #1e2235;
+    --hs-card-shadow:   rgba(0, 0, 0, 0.4);
+    --hs-card-shadow-h: rgba(0, 0, 0, 0.6);
+    --hs-progress-bg:   #2a3045;
+    --hs-progress-fill: #6aaee0;
+  }
+}
+
+/* ─── Full-bleed breakout ───────────────────────────────────────── */
+
+.hs-root {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  padding-bottom: 3px;
+  overflow: hidden;
+}
+
+/* ─── Scrollable track ──────────────────────────────────────────── */
+
+.hs-track {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Side padding = (100vw - card-width) / 2 so first/last card center */
+  padding: 32px calc((100vw - min(68vw, 400px)) / 2);
+  gap: 20px;
+}
+
+.hs-track::-webkit-scrollbar { display: none; }
+
+/* ─── Card ──────────────────────────────────────────────────────── */
+
+.hs-card {
+  flex: 0 0 min(68vw, 400px);
+  /* 4:3 landscape feel: width × 0.72 */
+  height: min(49vw, 288px);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 30px 26px;
+
+  border: 1px solid var(--hs-border);
+  border-radius: 4px;
+  background: var(--hs-card-bg);
+  box-shadow: 0 2px 12px var(--hs-card-shadow);
+
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hs-card:hover,
+.hs-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px var(--hs-card-shadow-h);
+  outline: none;
+}
+
+.hs-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--hs-progress-fill), 0 8px 28px var(--hs-card-shadow-h);
+}
+
+/* ─── Card typography ───────────────────────────────────────────── */
+
+.hs-card-num {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hs-accent);
+  line-height: 1;
+}
+
+.hs-card-title {
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--hs-fg);
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* Clamp to 4 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hs-card-meta {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--hs-muted);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.hs-card-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--hs-fg);
+  opacity: 0.65;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Scroll hint ───────────────────────────────────────────────── */
+
+.hs-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 6vw;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-muted);
+  font-family: ui-monospace, 'SFMono-Regular', monospace;
+  pointer-events: none;
+  user-select: none;
+  animation: hs-hint-fade 1s ease-out 2.5s forwards;
+}
+
+@keyframes hs-hint-fade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ─── Progress bar ──────────────────────────────────────────────── */
+
+.hs-root::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--hs-progress-bg);
+  z-index: 1;
+}
+
+.hs-root::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--hs-progress-fill);
+  z-index: 2;
+  animation: hs-progress linear;
+  animation-fill-mode: both;
+}
+
+@supports (animation-timeline: scroll()) {
+  .hs-root::before {
+    animation-timeline: scroll(.hs-track inline);
+    animation-duration: auto;
+  }
+}
+
+@keyframes hs-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ─── Mobile < 600px ────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .hs-track {
+    padding: 24px calc((100vw - min(86vw, 320px)) / 2);
+    gap: 14px;
+  }
+
+  .hs-card {
+    flex: 0 0 min(86vw, 320px);
+    height: min(62vw, 230px);
+    padding: 20px 20px 18px;
+  }
+}
+
+/* ─── Reduced motion ────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-card           { transition: none; }
+  .hs-track          { scroll-behavior: auto; }
+  .hs-hint           { animation: none; opacity: 0; }
+  .hs-root::before   { animation: none; }
+}
+
+/* ─── Dragging state ────────────────────────────────────────────── */
+
+.hs-dragging        { cursor: grabbing; scroll-behavior: auto; }
+.hs-track           { cursor: grab; }

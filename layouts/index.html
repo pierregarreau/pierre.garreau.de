@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+<body>
+	<link rel="stylesheet" href="/css/post-feed.css">
+	<div class="container wrapper">
+		{{ partial "head.html" . }}
+
+		{{ $pages := where .Site.RegularPages "Type" "blog" }}
+		{{ $pages = sort $pages "Date" "desc" }}
+
+		<section class="post-feed">
+			{{ range $pages }}
+			{{ $slug := .File.ContentBaseName }}
+			<a class="pf-card" href="{{ .RelPermalink | safeURL }}">
+				<div class="pf-body">
+					<p class="pf-meta">{{ dateFormat "Jan 2, 2006" .Date }}{{ range .Params.tags }} · {{ . }}{{ end }}</p>
+					<h2 class="pf-title">{{ .Title }}</h2>
+					<p class="pf-desc">{{ .Description }}</p>
+				</div>
+			</a>
+			{{ end }}
+		</section>
+	</div>
+	{{ partial "footer.html" . }}
+</body>
+</html>

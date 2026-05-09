@@ -55,7 +55,22 @@ function setup(){
 }
 
 function draw() {
-    image(background, 0, 0)
+    var r = 16;
+    drawingContext.save();
+    drawingContext.beginPath();
+    drawingContext.moveTo(r, 0);
+    drawingContext.lineTo(width - r, 0);
+    drawingContext.quadraticCurveTo(width, 0, width, r);
+    drawingContext.lineTo(width, height - r);
+    drawingContext.quadraticCurveTo(width, height, width - r, height);
+    drawingContext.lineTo(r, height);
+    drawingContext.quadraticCurveTo(0, height, 0, height - r);
+    drawingContext.lineTo(0, r);
+    drawingContext.quadraticCurveTo(0, 0, r, 0);
+    drawingContext.closePath();
+    drawingContext.clip();
+    image(background, 0, 0);
+    drawingContext.restore();
     if (playb) {
       grid.equalize();
     }
@@ -164,7 +179,7 @@ function Cell(width, height, pos_x, pos_y, transparency){
         stroke(245, 30, 191, 100);
         // Color calculated using sine wave
         fill(this.color);
-        rect(this.pos_x, this.pos_y, this.width, this.height);
+        rect(this.pos_x, this.pos_y, this.width, this.height, 8);
     }
 }
 

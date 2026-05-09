@@ -20,7 +20,7 @@ url                    = "/about/"
 name                   = "Blog"
 weight                 = -120
 identifier             = "blog"
-url                    = "/blog/"
+url                    = "/"
 
 [params]
   latestpostscount       = 5                             # how many posts to display on the home page
@@ -37,9 +37,9 @@ url                    = "/blog/"
   highlightjs            = true
   instagram              = "//instagram.com/theo_calimero"
   lang                   = "en"
-  linkedin               = "//linkedin.com/in/pgarreau"
+  linkedin               = "https://www.linkedin.com/in/pgarreau/"
   noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
-  selfintro              = ""                            # appears in the site header when set to a non-empty string
+  selfintro              = "Writing about code, mathematics and building things from Europe."
   twitter                = "//twitter.com/pierre_garreau"
   avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
   # gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar

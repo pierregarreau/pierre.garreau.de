@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0ebe4"/>
+      <stop offset="100%" stop-color="#f0ebe4"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#428bca"/>
+      <stop offset="100%" stop-color="#2a6496"/>
+    </linearGradient>
+    <linearGradient id="barGradBright" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6aaee0"/>
+      <stop offset="100%" stop-color="#428bca"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="waveGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="clip">
+      <rect width="600" height="400"/>
+    </clipPath>
+    <radialGradient id="ambientGlow" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <rect width="600" height="400" fill="url(#ambientGlow)"/>
+
+  <!-- Baseline -->
+  <line x1="0" y1="310" x2="600" y2="310" stroke="#428bca" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Equalizer bars — 28 bars, varying heights, simulating frequency spectrum -->
+  <g clip-path="url(#clip)">
+    <!-- bar widths ~14px, gap 7px, starting at x=15 -->
+    <!-- Heights chosen to simulate a realistic FFT envelope -->
+    <g fill="url(#barGrad)">
+      <rect x="15"  y="290" width="14" height="20"  rx="2" opacity="0.4"/>
+      <rect x="36"  y="275" width="14" height="35"  rx="2" opacity="0.45"/>
+      <rect x="57"  y="255" width="14" height="55"  rx="2" opacity="0.5"/>
+      <rect x="78"  y="230" width="14" height="80"  rx="2" opacity="0.55"/>
+      <rect x="99"  y="205" width="14" height="105" rx="2" opacity="0.6"/>
+      <rect x="120" y="185" width="14" height="125" rx="2" opacity="0.65"/>
+      <rect x="141" y="165" width="14" height="145" rx="2" opacity="0.7"/>
+    </g>
+    <!-- Peak bars — bright accent -->
+    <g fill="url(#barGradBright)" filter="url(#glow)">
+      <rect x="162" y="130" width="14" height="180" rx="2" opacity="0.85"/>
+      <rect x="183" y="110" width="14" height="200" rx="2" opacity="0.9"/>
+      <rect x="204" y="95"  width="14" height="215" rx="2" opacity="0.95"/>
+      <rect x="225" y="80"  width="14" height="230" rx="2" opacity="1"/>
+      <rect x="246" y="88"  width="14" height="222" rx="2" opacity="0.95"/>
+    </g>
+    <g fill="url(#barGradBright)">
+      <rect x="267" y="105" width="14" height="205" rx="2" opacity="0.85"/>
+      <rect x="288" y="120" width="14" height="190" rx="2" opacity="0.8"/>
+    </g>
+    <!-- Mid-range -->
+    <g fill="url(#barGrad)">
+      <rect x="309" y="145" width="14" height="165" rx="2" opacity="0.7"/>
+      <rect x="330" y="170" width="14" height="140" rx="2" opacity="0.65"/>
+      <rect x="351" y="155" width="14" height="155" rx="2" opacity="0.68"/>
+      <rect x="372" y="140" width="14" height="170" rx="2" opacity="0.7"/>
+      <rect x="393" y="165" width="14" height="145" rx="2" opacity="0.6"/>
+      <rect x="414" y="190" width="14" height="120" rx="2" opacity="0.55"/>
+      <rect x="435" y="215" width="14" height="95"  rx="2" opacity="0.5"/>
+      <rect x="456" y="235" width="14" height="75"  rx="2" opacity="0.45"/>
+      <rect x="477" y="255" width="14" height="55"  rx="2" opacity="0.4"/>
+      <rect x="498" y="270" width="14" height="40"  rx="2" opacity="0.35"/>
+      <rect x="519" y="280" width="14" height="30"  rx="2" opacity="0.3"/>
+      <rect x="540" y="288" width="14" height="22"  rx="2" opacity="0.25"/>
+      <rect x="561" y="293" width="14" height="17"  rx="2" opacity="0.2"/>
+    </g>
+  </g>
+
+  <!-- Bright cap dots on tallest bars -->
+  <g fill="#6aaee0" filter="url(#glow)">
+    <rect x="162" y="127" width="14" height="3" rx="1.5" opacity="0.9"/>
+    <rect x="183" y="107" width="14" height="3" rx="1.5" opacity="0.9"/>
+    <rect x="204" y="92"  width="14" height="3" rx="1.5" opacity="1"/>
+    <rect x="225" y="77"  width="14" height="3" rx="1.5" opacity="1"/>
+    <rect x="246" y="85"  width="14" height="3" rx="1.5" opacity="1"/>
+    <rect x="267" y="102" width="14" height="3" rx="1.5" opacity="0.9"/>
+  </g>
+
+  <!-- Sine wave overlays — frequency decomposition -->
+  <!-- Low frequency, wide, faint -->
+  <path clip-path="url(#clip)"
+    d="M0,260 C75,220 150,300 225,260 C300,220 375,300 450,260 C525,220 575,260 600,250"
+    fill="none" stroke="#428bca" stroke-width="1.5" opacity="0.18"/>
+
+  <!-- Medium frequency -->
+  <path clip-path="url(#clip)"
+    d="M0,280 C37,250 75,310 112,280 C150,250 187,310 225,280 C262,250 300,310 337,280 C375,250 412,310 450,280 C487,250 525,310 562,280 C580,268 595,275 600,272"
+    fill="none" stroke="#428bca" stroke-width="1" opacity="0.14"/>
+
+  <!-- High frequency, tight -->
+  <path clip-path="url(#clip)"
+    d="M0,295 C18,285 37,305 56,295 C75,285 94,305 112,295 C131,285 150,305 168,295 C187,285 206,305 225,295 C243,285 262,305 281,295 C300,285 318,305 337,295 C356,285 375,305 393,295 C412,285 431,305 450,295 C468,285 487,305 506,295 C525,285 543,305 562,295 C581,285 596,298 600,296"
+    fill="none" stroke="#428bca" stroke-width="0.7" opacity="0.1"/>
+
+  <!-- Dominant sine wave — the fundamental -->
+  <path clip-path="url(#clip)"
+    d="M0,310 C50,150 150,350 225,200 C300,50 375,360 450,200 C525,50 575,250 600,220"
+    fill="none" stroke="#428bca" stroke-width="2" opacity="0.22" filter="url(#waveGlow)"/>
+
+  <!-- Subtle horizontal grid lines -->
+  <g stroke="#428bca" stroke-width="0.5" opacity="0.07">
+    <line x1="0" y1="200" x2="600" y2="200"/>
+    <line x1="0" y1="255" x2="600" y2="255"/>
+    <line x1="0" y1="160" x2="600" y2="160"/>
+  </g>
+
+  <!-- Border -->
+  <rect width="600" height="400" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.08"/>
+</svg>

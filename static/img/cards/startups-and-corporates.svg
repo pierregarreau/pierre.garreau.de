@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0ebe4"/>
+      <stop offset="100%" stop-color="#f0ebe4"/>
+    </linearGradient>
+    <!-- Corporate side: structured, cool -->
+    <linearGradient id="corpGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0.03"/>
+    </linearGradient>
+    <!-- Startup side: warm, organic -->
+    <linearGradient id="startupGrad" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#428bca" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#428bca" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="leftClip">
+      <!-- Left of the diagonal divider: startup side -->
+      <polygon points="0,0 360,0 240,400 0,400"/>
+    </clipPath>
+    <clipPath id="rightClip">
+      <!-- Right of the diagonal divider: corporate side -->
+      <polygon points="360,0 600,0 600,400 240,400"/>
+    </clipPath>
+    <clipPath id="fullClip">
+      <rect width="600" height="400"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Corporate side background tint -->
+  <polygon points="360,0 600,0 600,400 240,400" fill="url(#corpGrad)"/>
+  <!-- Startup side background tint -->
+  <polygon points="0,0 360,0 240,400 0,400" fill="url(#startupGrad)"/>
+
+  <!-- === CORPORATE SIDE (right) — rigid grid === -->
+  <g clip-path="url(#rightClip)">
+    <!-- Grid lines -->
+    <g stroke="#428bca" stroke-width="0.6" opacity="0.12">
+      <!-- Horizontal -->
+      <line x1="240" y1="50"  x2="620" y2="50"/>
+      <line x1="240" y1="100" x2="620" y2="100"/>
+      <line x1="240" y1="150" x2="620" y2="150"/>
+      <line x1="240" y1="200" x2="620" y2="200"/>
+      <line x1="240" y1="250" x2="620" y2="250"/>
+      <line x1="240" y1="300" x2="620" y2="300"/>
+      <line x1="240" y1="350" x2="620" y2="350"/>
+      <!-- Vertical -->
+      <line x1="320" y1="0" x2="320" y2="400"/>
+      <line x1="390" y1="0" x2="390" y2="400"/>
+      <line x1="460" y1="0" x2="460" y2="400"/>
+      <line x1="530" y1="0" x2="530" y2="400"/>
+    </g>
+    <!-- Grid node dots at intersections -->
+    <g fill="#428bca" opacity="0.2">
+      <circle cx="390" cy="50"  r="2.5"/>
+      <circle cx="460" cy="50"  r="2.5"/>
+      <circle cx="530" cy="50"  r="2.5"/>
+      <circle cx="390" cy="100" r="2.5"/>
+      <circle cx="460" cy="100" r="2.5"/>
+      <circle cx="530" cy="100" r="2.5"/>
+      <circle cx="390" cy="150" r="2.5"/>
+      <circle cx="460" cy="150" r="2.5"/>
+      <circle cx="530" cy="150" r="2.5"/>
+      <circle cx="390" cy="200" r="2.5"/>
+      <circle cx="460" cy="200" r="2.5"/>
+      <circle cx="530" cy="200" r="2.5"/>
+      <circle cx="390" cy="250" r="2.5"/>
+      <circle cx="460" cy="250" r="2.5"/>
+      <circle cx="530" cy="250" r="2.5"/>
+      <circle cx="390" cy="300" r="2.5"/>
+      <circle cx="460" cy="300" r="2.5"/>
+      <circle cx="530" cy="300" r="2.5"/>
+      <circle cx="390" cy="350" r="2.5"/>
+      <circle cx="460" cy="350" r="2.5"/>
+      <circle cx="530" cy="350" r="2.5"/>
+    </g>
+    <!-- Larger accent dots on some intersections -->
+    <g fill="#428bca" opacity="0.55" filter="url(#glow)">
+      <circle cx="460" cy="150" r="5"/>
+      <circle cx="530" cy="200" r="5"/>
+      <circle cx="390" cy="250" r="5"/>
+      <circle cx="460" cy="300" r="5"/>
+    </g>
+    <!-- Rectangular blocks suggesting org-chart boxes -->
+    <g fill="none" stroke="#428bca" stroke-width="0.8" opacity="0.18">
+      <rect x="430" y="60"  width="60" height="30" rx="2"/>
+      <rect x="430" y="120" width="60" height="30" rx="2"/>
+      <rect x="430" y="180" width="60" height="30" rx="2"/>
+      <rect x="500" y="90"  width="60" height="30" rx="2"/>
+      <rect x="500" y="150" width="60" height="30" rx="2"/>
+    </g>
+    <g fill="#428bca" opacity="0.06">
+      <rect x="430" y="60"  width="60" height="30" rx="2"/>
+      <rect x="430" y="120" width="60" height="30" rx="2"/>
+      <rect x="430" y="180" width="60" height="30" rx="2"/>
+    </g>
+  </g>
+
+  <!-- === STARTUP SIDE (left) — organic, scattered === -->
+  <g clip-path="url(#leftClip)">
+    <!-- Scattered organic circles of varying sizes -->
+    <g fill="none" stroke="#428bca">
+      <circle cx="60"  cy="100" r="35"  stroke-width="0.7" opacity="0.15"/>
+      <circle cx="60"  cy="100" r="20"  stroke-width="0.6" opacity="0.12"/>
+      <circle cx="170" cy="160" r="55"  stroke-width="0.8" opacity="0.12"/>
+      <circle cx="170" cy="160" r="30"  stroke-width="0.6" opacity="0.1"/>
+      <circle cx="80"  cy="270" r="45"  stroke-width="0.7" opacity="0.13"/>
+      <circle cx="220" cy="320" r="40"  stroke-width="0.7" opacity="0.12"/>
+      <circle cx="140" cy="60"  r="25"  stroke-width="0.6" opacity="0.1"/>
+      <circle cx="280" cy="200" r="30"  stroke-width="0.6" opacity="0.1"/>
+    </g>
+    <!-- Organic blob accent shapes -->
+    <ellipse cx="100" cy="180" rx="70" ry="40" fill="#428bca" opacity="0.04" transform="rotate(-20 100 180)"/>
+    <ellipse cx="200" cy="280" rx="80" ry="35" fill="#428bca" opacity="0.04" transform="rotate(15 200 280)"/>
+    <ellipse cx="130" cy="100" rx="50" ry="30" fill="#428bca" opacity="0.03" transform="rotate(-35 130 100)"/>
+
+    <!-- Scattered dots — chaotic cluster -->
+    <g fill="#428bca">
+      <circle cx="40"  cy="80"  r="3"   opacity="0.4"/>
+      <circle cx="90"  cy="120" r="4.5" opacity="0.5"/>
+      <circle cx="55"  cy="200" r="3.5" opacity="0.35"/>
+      <circle cx="150" cy="90"  r="5"   opacity="0.55"/>
+      <circle cx="200" cy="140" r="6"   opacity="0.6" filter="url(#glow)"/>
+      <circle cx="120" cy="240" r="4.5" opacity="0.45"/>
+      <circle cx="200" cy="300" r="5.5" opacity="0.5"/>
+      <circle cx="260" cy="180" r="4"   opacity="0.4"/>
+      <circle cx="100" cy="340" r="3"   opacity="0.3"/>
+      <circle cx="240" cy="360" r="3.5" opacity="0.3"/>
+      <circle cx="50"  cy="320" r="2.5" opacity="0.25"/>
+      <circle cx="180" cy="360" r="2.5" opacity="0.25"/>
+      <circle cx="70"  cy="160" r="2"   opacity="0.2"/>
+      <circle cx="230" cy="80"  r="2"   opacity="0.2"/>
+    </g>
+
+    <!-- Erratic connecting lines — startup chaos -->
+    <g stroke="#428bca" stroke-width="0.8" fill="none" opacity="0.2">
+      <line x1="90"  y1="120" x2="200" y2="140"/>
+      <line x1="200" y1="140" x2="150" y2="90"/>
+      <line x1="200" y1="140" x2="120" y2="240"/>
+      <line x1="200" y1="140" x2="260" y2="180"/>
+      <line x1="120" y1="240" x2="200" y2="300"/>
+      <line x1="55"  y1="200" x2="120" y2="240"/>
+      <line x1="40"  y1="80"  x2="150" y2="90"/>
+      <line x1="90"  y1="120" x2="40"  y2="80"/>
+    </g>
+  </g>
+
+  <!-- === DIAGONAL DIVIDER === -->
+  <!-- Main divider line -->
+  <line x1="360" y1="0" x2="240" y2="400" stroke="#428bca" stroke-width="1.5" opacity="0.5" filter="url(#glow)"/>
+  <!-- Soft glow halo around divider -->
+  <line x1="360" y1="0" x2="240" y2="400" stroke="#428bca" stroke-width="8" opacity="0.04" filter="url(#softglow)"/>
+  <!-- Tick marks along divider -->
+  <g stroke="#428bca" stroke-width="0.8" opacity="0.3">
+    <line x1="348" y1="30"  x2="355" y2="30"  transform="rotate(-23 348 30)"/>
+    <line x1="337" y1="60"  x2="344" y2="60"  transform="rotate(-23 337 60)"/>
+    <line x1="326" y1="90"  x2="333" y2="90"  transform="rotate(-23 326 90)"/>
+    <line x1="315" y1="120" x2="322" y2="120" transform="rotate(-23 315 120)"/>
+    <line x1="304" y1="150" x2="311" y2="150" transform="rotate(-23 304 150)"/>
+    <line x1="293" y1="180" x2="300" y2="180" transform="rotate(-23 293 180)"/>
+    <line x1="282" y1="210" x2="289" y2="210" transform="rotate(-23 282 210)"/>
+    <line x1="271" y1="240" x2="278" y2="240" transform="rotate(-23 271 240)"/>
+    <line x1="260" y1="270" x2="267" y2="270" transform="rotate(-23 260 270)"/>
+    <line x1="249" y1="300" x2="256" y2="300" transform="rotate(-23 249 300)"/>
+    <line x1="238" y1="330" x2="245" y2="330" transform="rotate(-23 238 330)"/>
+    <line x1="227" y1="360" x2="234" y2="360" transform="rotate(-23 227 360)"/>
+  </g>
+
+  <!-- Border -->
+  <rect width="600" height="400" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.08"/>
+</svg>

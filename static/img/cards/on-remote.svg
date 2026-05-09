@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0ebe4"/>
+      <stop offset="100%" stop-color="#f0ebe4"/>
+    </linearGradient>
+    <radialGradient id="nodeA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6aaee0"/>
+      <stop offset="100%" stop-color="#428bca"/>
+    </radialGradient>
+    <radialGradient id="nodeB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#428bca"/>
+      <stop offset="100%" stop-color="#2a6496"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Subtle noise texture via small dots -->
+  <g fill="#428bca" opacity="0.03">
+    <circle cx="45"  cy="30"  r="1.2"/>
+    <circle cx="110" cy="15"  r="1"/>
+    <circle cx="200" cy="40"  r="1.5"/>
+    <circle cx="330" cy="20"  r="1"/>
+    <circle cx="480" cy="35"  r="1.2"/>
+    <circle cx="550" cy="15"  r="1"/>
+    <circle cx="580" cy="370" r="1.2"/>
+    <circle cx="10"  cy="370" r="1"/>
+    <circle cx="90"  cy="390" r="1.5"/>
+    <circle cx="500" cy="390" r="1"/>
+  </g>
+
+  <!--
+    Nodes (constellation of collaboration):
+    Node positions scattered across the field
+    A: 300,200  (hub — brightest)
+    B: 120,90
+    C: 480,80
+    D: 80,280
+    E: 420,300
+    F: 220,340
+    G: 510,210
+    H: 155,190
+    I: 370,150
+    J: 280,80
+    K: 540,340
+    L: 60,150
+    M: 390,360
+  -->
+
+  <!-- Connection lines — dim, dotted, varying opacity -->
+  <g stroke="#428bca" fill="none" stroke-dasharray="3 6">
+    <!-- Hub to main satellites -->
+    <line x1="300" y1="200" x2="120"  y2="90"  stroke-width="1"   opacity="0.45"/>
+    <line x1="300" y1="200" x2="480"  y2="80"  stroke-width="1"   opacity="0.35"/>
+    <line x1="300" y1="200" x2="80"   y2="280" stroke-width="1"   opacity="0.4"/>
+    <line x1="300" y1="200" x2="420"  y2="300" stroke-width="1.2" opacity="0.5"/>
+    <line x1="300" y1="200" x2="220"  y2="340" stroke-width="0.8" opacity="0.3"/>
+    <line x1="300" y1="200" x2="510"  y2="210" stroke-width="1"   opacity="0.38"/>
+    <line x1="300" y1="200" x2="155"  y2="190" stroke-width="1.5" opacity="0.6"/>
+    <line x1="300" y1="200" x2="370"  y2="150" stroke-width="1.5" opacity="0.65"/>
+    <line x1="300" y1="200" x2="280"  y2="80"  stroke-width="0.8" opacity="0.28"/>
+  </g>
+
+  <!-- Secondary connections between satellites -->
+  <g stroke="#428bca" fill="none" stroke-dasharray="2 8" opacity="0.2">
+    <line x1="120"  y1="90"  x2="280"  y2="80"  stroke-width="0.7"/>
+    <line x1="120"  y1="90"  x2="155"  y2="190" stroke-width="0.7"/>
+    <line x1="120"  y1="90"  x2="80"   y2="280" stroke-width="0.5"/>
+    <line x1="480"  y1="80"  x2="370"  y2="150" stroke-width="0.7"/>
+    <line x1="480"  y1="80"  x2="510"  y2="210" stroke-width="0.7"/>
+    <line x1="480"  y1="80"  x2="280"  y2="80"  stroke-width="0.5"/>
+    <line x1="420"  y1="300" x2="510"  y2="210" stroke-width="0.7"/>
+    <line x1="420"  y1="300" x2="540"  y2="340" stroke-width="0.5"/>
+    <line x1="420"  y1="300" x2="390"  y2="360" stroke-width="0.6"/>
+    <line x1="80"   y1="280" x2="220"  y2="340" stroke-width="0.6"/>
+    <line x1="220"  y1="340" x2="390"  y2="360" stroke-width="0.5"/>
+    <line x1="60"   y1="150" x2="80"   y2="280" stroke-width="0.5"/>
+    <line x1="60"   y1="150" x2="155"  y2="190" stroke-width="0.5"/>
+    <line x1="155"  y1="190" x2="370"  y2="150" stroke-width="0.7"/>
+  </g>
+
+  <!-- Glowing bright connections for "active" links -->
+  <g stroke="#428bca" fill="none" stroke-width="1.5">
+    <line x1="300" y1="200" x2="155"  y2="190" opacity="0.7" filter="url(#glow)"/>
+    <line x1="300" y1="200" x2="370"  y2="150" opacity="0.7" filter="url(#glow)"/>
+    <line x1="300" y1="200" x2="420"  y2="300" opacity="0.55" filter="url(#glow)"/>
+  </g>
+
+  <!-- Outer/peripheral nodes — small, dim -->
+  <g fill="#428bca">
+    <circle cx="280" cy="80"  r="4"  opacity="0.25"/>
+    <circle cx="80"  cy="280" r="5"  opacity="0.3"/>
+    <circle cx="220" cy="340" r="4"  opacity="0.22"/>
+    <circle cx="540" cy="340" r="4"  opacity="0.2"/>
+    <circle cx="390" cy="360" r="3.5" opacity="0.2"/>
+    <circle cx="60"  cy="150" r="4"  opacity="0.22"/>
+  </g>
+
+  <!-- Mid-level nodes -->
+  <g>
+    <circle cx="120"  cy="90"  r="7"  fill="url(#nodeB)" opacity="0.55"/>
+    <circle cx="480"  cy="80"  r="7"  fill="url(#nodeB)" opacity="0.5"/>
+    <circle cx="510"  cy="210" r="8"  fill="url(#nodeB)" opacity="0.55"/>
+  </g>
+  <g fill="#6aaee0" opacity="0.5">
+    <circle cx="120"  cy="90"  r="2.5"/>
+    <circle cx="480"  cy="80"  r="2.5"/>
+    <circle cx="510"  cy="210" r="3"/>
+  </g>
+
+  <!-- Secondary nodes with glows -->
+  <g filter="url(#glow)">
+    <circle cx="155"  cy="190" r="10" fill="url(#nodeA)" opacity="0.75"/>
+    <circle cx="370"  cy="150" r="11" fill="url(#nodeA)" opacity="0.8"/>
+    <circle cx="420"  cy="300" r="9"  fill="url(#nodeA)" opacity="0.7"/>
+  </g>
+  <g fill="#b3d4fc">
+    <circle cx="155"  cy="190" r="3.5" opacity="0.8"/>
+    <circle cx="370"  cy="150" r="4"   opacity="0.85"/>
+    <circle cx="420"  cy="300" r="3"   opacity="0.75"/>
+  </g>
+
+  <!-- Hub node — center, dominant -->
+  <circle cx="300" cy="200" r="26" fill="#09090b" stroke="#428bca" stroke-width="1.5" opacity="0.7" filter="url(#softglow)"/>
+  <circle cx="300" cy="200" r="16" fill="url(#nodeA)" opacity="0.9"/>
+  <circle cx="300" cy="200" r="7"  fill="#dde3ee" opacity="0.95"/>
+  <!-- Outer pulse ring -->
+  <circle cx="300" cy="200" r="34" fill="none" stroke="#428bca" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 8"/>
+  <circle cx="300" cy="200" r="44" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.1" stroke-dasharray="3 10"/>
+
+  <!-- Border -->
+  <rect width="600" height="400" fill="none" stroke="#428bca" stroke-width="0.5" opacity="0.07"/>
+</svg>
