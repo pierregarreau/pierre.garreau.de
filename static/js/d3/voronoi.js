@@ -1,6 +1,6 @@
-var svg = d3.select("svg").on("touchmove mousemove", moved),
-width = +svg.attr("width"),
-height = +svg.attr("height");
+var svg = d3.select("#voronoi-holder").on("touchmove mousemove", moved),
+width = 750,
+height = 300;
 
 var sites = d3.range(100)
     .map(function(d) { return [Math.random() * width, Math.random() * height]; });
