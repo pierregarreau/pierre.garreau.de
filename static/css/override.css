@@ -60,70 +60,61 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ─── Site header ─────────────────────────────────────────────────── */
+/* ─── Site header — stacked: avatar → name → intro → links ──────── */
 
 .site-header {
   padding: 40px 0 32px;
   text-align: left;
 }
 
-.sh-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
 .sh-avatar-link {
-  flex-shrink: 0;
-  margin-top: 2px;
+  display: inline-block;
+  margin-bottom: 32px;
 }
 
 .sh-avatar {
-  width: 32px;
-  height: 32px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
   margin: 0; /* override theme img { margin: auto } */
 }
 
-.sh-bio {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
 .sh-name {
+  display: block;
   font-family: 'Source Serif 4', Georgia, serif;
-  font-weight: 500;
-  font-size: 13px;
-  color: #0f0f0f;
+  font-weight: 400;
+  font-size: 14px;
+  color: #9a9a9a;
   text-decoration: none;
   line-height: 1.4;
+  margin-bottom: 12px;
 }
 
 .sh-name:hover {
-  color: #4d4d4d;
+  color: #0f0f0f;
 }
 
 .sh-intro {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 12px;
+  font-size: 26px;
   font-weight: 400;
-  color: #4d4d4d;
-  margin: 3px 0 8px;
-  line-height: 1.5;
+  color: #0f0f0f;
+  margin: 0 0 32px;
+  line-height: 1.35;
 }
 
 .sh-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .sh-links a {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 400;
   color: #4d4d4d;
   text-decoration: underline;
   text-underline-offset: 2px;

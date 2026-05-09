@@ -1,22 +1,22 @@
 <div class="site-header">
-  <div class="sh-top">
-    {{ if .Site.Params.avatar }}
-    <a href="{{ "/" | relLangURL }}" class="sh-avatar-link">
-      <img class="sh-avatar" src="/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.author }}">
-    </a>
-    {{ end }}
-    <div class="sh-bio">
-      <a class="sh-name" href="{{ "/" | relLangURL }}">{{ .Site.Params.author }}</a>
-      {{ if .Site.Params.selfintro }}
-      <p class="sh-intro">{{ .Site.Params.selfintro }}</p>
-      {{ end }}
-      <div class="sh-links">
-        {{ with .Site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
-        {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">linkedin</a>{{ end }}
-        {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">github</a>{{ end }}
-      </div>
-    </div>
+  {{ if .Site.Params.avatar }}
+  <a href="{{ "/" | relLangURL }}" class="sh-avatar-link">
+    <img class="sh-avatar" src="/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.author }}">
+  </a>
+  {{ end }}
+
+  <a class="sh-name" href="{{ "/" | relLangURL }}">{{ .Site.Params.author }}</a>
+
+  {{ if .Site.Params.selfintro }}
+  <p class="sh-intro">{{ .Site.Params.selfintro }}</p>
+  {{ end }}
+
+  <div class="sh-links">
+    {{ with .Site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
+    {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">linkedin</a>{{ end }}
+    {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">github</a>{{ end }}
   </div>
+
   <nav class="sh-nav">
     <ul class="flat">
       {{ range .Site.Menus.main }}
