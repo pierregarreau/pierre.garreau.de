@@ -12,7 +12,6 @@
   {{ end }}
 
   <div class="sh-links">
-    {{ with .Site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
     {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">linkedin</a>{{ end }}
     {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">github</a>{{ end }}
   </div>
