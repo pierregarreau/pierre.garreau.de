@@ -35,10 +35,17 @@ function preload() {
     background = loadImage("/js/p5/assets/FLY00.gif");
 }
 
+function sketchDimensions() {
+    var holder = document.getElementById('sketch-holder');
+    var maxW = 763;
+    var w = holder ? min(holder.offsetWidth, maxW) : maxW;
+    var h = floor(w * (511 / 763));
+    return { w: w, h: h };
+}
+
 function setup(){
-    const canvas_width = 763;
-    const canvas_height = 511;
-    var canvas = createCanvas(canvas_width, canvas_height);
+    var dim = sketchDimensions();
+    var canvas = createCanvas(dim.w, dim.h);
     canvas.parent('sketch-holder');
 
     fft = new p5.FFT();
@@ -47,11 +54,20 @@ function setup(){
     var cols = 12;
     var rows = 8;
     grid = new Grid(rows, cols);
-    grid.initialize(canvas_width, canvas_height);
+    grid.initialize(dim.w, dim.h);
 
     stroke(255);
     noFill();
     // frameRate(35);
+}
+
+function windowResized() {
+    var dim = sketchDimensions();
+    resizeCanvas(dim.w, dim.h);
+    var cols = 12;
+    var rows = 8;
+    grid = new Grid(rows, cols);
+    grid.initialize(dim.w, dim.h);
 }
 
 function draw() {

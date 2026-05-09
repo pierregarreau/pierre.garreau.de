@@ -19,6 +19,7 @@ body {
   color: #0f0f0f;
   background: #fefdfa;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,12 +33,20 @@ h1, h2, h3, h4, h5, h6 {
 .container,
 .wrapper {
   max-width: 750px !important;
-  width: 750px !important;
+  width: auto !important;
   margin-left: max(24px, calc((100vw - 750px) / 3)) !important;
-  margin-right: 0 !important;
+  margin-right: 24px !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .container,
+  .wrapper {
+    margin-left: 24px !important;
+    margin-right: 24px !important;
+  }
 }
 
 /* ─── Site header ─────────────────────────────────────────────────── */

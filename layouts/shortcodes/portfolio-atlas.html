@@ -31,7 +31,7 @@
 </div>
 
 <style>
-.pa-wrap { margin: 2rem -1rem; }
+.pa-wrap { margin: 2rem 0; }
 
 .pa-embed {
   position: relative;
@@ -44,6 +44,12 @@
   height: 900px;
   border: none;
   display: block;
+}
+
+@media (max-width: 600px) {
+  .pa-embed iframe {
+    height: 600px;
+  }
 }
 
 .pa-expand {
